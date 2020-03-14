@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="icon" href="data:;base64,=">
+	<script src="../d3.js"></script>
+	<style>
+		.error {
+			color: red
+		}
+	</style>
+</head>
+
+<body>
+	<div id='dCheck'>
+		<p>First</p>
+		<p>Zweite</p>
+		<p>Dritte</p>
+		<p>Error: This is error.</p>
+		<p>Warning:This is warning.</p>
+	</div>
+	<script>
+		function test5() {
+			let paras = d3.selectAll('p');
+			paras.on('mouseover', function () {
+				let el = d3.select(this);
+				el.style("background-color", "orange");
+				// Get current event info
+				console.log(d3.event);
+
+				// Get x & y co-ordinates
+				console.log(d3.mouse(this));
+
+				let domel = this;
+				let par = domel.parentElement;
+				console.log(domel);
+			});
+			paras.on('mouseout', function () {
+				d3.select(this)
+					.style("background-color", "steelblue");
+			});
+
+		}
+		
+		var t = d3.transition().duration(5000).ease(d3.easeElastic);
+		function test6() {
+			let p = d3.select('p');
+			p.transition().duration(1000).style('background-color', 'green');
+		}
+		function test7() { d3.select('p:nth-child(2)').transition(t).style('background-color','violet'); }
+
+		function ancestors(domel) {
+			let res = [];
+			let node = domel;
+			let el = domel;
+			while (node) {
+				res.push({ node: node, elem: el });
+				domel = domel.parentNode;
+				node = domel.parentNode;
+				el = domel.parentElement;
+			}
+			res.reverse();
+			return res;
+		}
+
+		test7();
+		//test5();
+		let p1 = d3.select('p').node();
+		let dom = ancestors(p1);
+		console.log(dom);
+		dom.map(d => console.log(d, '\n', d.node, d.elem));
+		for (const d of dom) {
+			console.log('node', typeof (d.node), d.node);
+			console.log('elem', typeof (d.elem), d.elem);
+			console.log('as object:', [d.elem]); //geht zwar aber muss mich runterclicken!
+			//console.log('node2:',d.node.toString()) bringt garnix!
+		}
+		// console.log(p1);
+		// let par = p1.parentNode;
+		// console.log(par);
+		// let par1 = par.parentNode;
+		// console.log(par1);
+		// let par2 = par1.parentNode;
+		// console.log(par2);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+
+</html>

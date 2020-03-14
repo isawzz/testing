@@ -1,0 +1,76 @@
+:root{
+	--wTable: 500px;
+	--hTable: 200px;
+}
+body{margin:0;padding:0;background-color:green;}
+
+
+/* #region #rsg grid */
+#rsg{
+	display: grid;
+	grid-template-columns: min-content var(--wTable) auto;
+	/* grid-template-columns: min-content fit-content auto; */
+	grid-template-areas: 'ha hb hc' 'a b c';
+	
+	justify-items: stretch;
+	justify-content: stretch;	
+	/* width: 100%; */
+	/* width:auto; */
+}
+#actions{
+	grid-area: a;
+	display: grid;
+	max-height: var(--hTable);
+	background-color:red;
+}
+#game{
+	grid-area: b;
+	background-color:yellow;
+	align-self: stretch;
+}
+#log{
+	grid-area: c;
+	background-color:blue;
+	align-self: stretch;
+}
+
+/* #endregion #rsg grid */
+
+#headerActions{
+	grid-area: ha;
+}
+#headerGame{
+	grid-area: hb;
+}
+#headerLog{
+	grid-area: hc;
+}
+#rsg>div, #pageHeader, #test3>div, #test>div, #test2>div, #test3>div{
+	border-radius: 12px;
+	background-color: grey;
+	margin: 4px;
+
+}
+#test, #test2, #test3{
+	display:grid;
+	grid-template-columns: min-content auto;
+
+}
+#root{
+		display: grid;
+		grid-template-rows: min-content auto auto auto auto;
+		/* grid-template-columns: min-content fit-content auto; */
+		grid-template-areas: 'i' 'g' 'o' 's' 'd' ;
+		justify-items: stretch;
+		justify-content: stretch;	
+		padding:2px;
+		/* width:100%;
+		height:100%; */
+		text-align:center;
+		/* width: 100%; */
+		/* width:auto; */
+}
+
+
+
+

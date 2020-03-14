@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/facebook/65/game-die_1f3b2.png">
+	<link href="./main.css" rel="stylesheet">
+	<title>Document</title>
+</head>
+
+<body>
+	<h1 style="color:green;">GeeksforGeeks</h1>
+	<div class='buttons'>
+		actions2:
+		<button onclick='fillActions2("actions2",170,100)'>fill 170</button>
+		<button onclick='fillActions2("actions2",70,100)'>fill 70</button>
+		<button onclick='fillActions2("actions2",10,100)'>fill 10</button>
+		actions:
+		<button onclick='fillActions("actions",370)'>fill 370</button>
+		<button onclick='fillActions("actions",270)'>fill 270</button>
+		<button onclick='fillActions("actions",30)'>fill 30</button>
+		left:
+		<button onclick='fillActions2("left",170,100)'>fill 170</button>
+		<button onclick='fillActions2("left",70,100)'>fill 70</button>
+		<button onclick='fillActions2("left",10,100)'>fill 10</button>
+	</div>
+	<div id='rsg'>
+		<div id='actions2'>actions</div>
+		<div id='game'>game</div>
+		<div id='log'>log</div>
+	</div>
+	<div id='actions'>hallo</div>
+	<div id="container">
+		<div>
+			hallo
+		</div>
+		<div>
+			The smallest division of the grid.
+			Maximum width is clamped to 150px.
+		</div>
+		<div style='max-height:40px;width:auto'> 
+			This division's width will depend on
+			the content inside it. However, the
+			maximum width will be 250px.
+		</div>
+		<div>
+			<strong>
+				Division with some more data, however,
+				the maximum permissible width will be 350px.
+			</strong>
+			<br>
+			<br>
+			Web design encompasses many different skills
+			and disciplines in the production and maintenance
+			of websites. The different areas of web design
+			include web graphic design; interface design;
+			authoring, including standardized code and
+			proprietary software; user experience design;
+			and search engine optimization.
+		</div>
+		<div>
+			Flexible division, the width will change in
+			accordance with the screen size and the width
+			of the other three divisions.
+		</div>
+	</div>
+	<script src="./helpers.js"></script>
+	<script src="./main.js"></script>
+	<script src="./_start.js"></script>
+</body>
+
+</html>

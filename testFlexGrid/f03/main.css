@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+}
+.outer {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+}
+.block {
+  width: 50%;
+}
+.block-1 {
+  background-color: red;
+  resize: horizontal; /* resize vertical */
+	overflow: auto; /* resize works for overflow other than visible */
+	
+	max-height:100px;
+	display: flex;
+	flex-flow: column wrap;
+	text-align: left;
+	width:auto;
+
+}
+.block-2 {
+  background-color: green;
+  flex: 1; /* adjust automatically */
+  min-height: 0;
+  overflow: hidden; /* hide overflow on small width */
+}
+.slider {
+  text-align: center;
+  letter-spacing: 1px;
+  background-color: #dee2e6;
+  cursor: col-resize;
+  user-select: none; /* disable selection */
+}
+
+
+
+
+
+

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="icon" href="data:;base64,=">
+	<script src="../d3.js"></script>
+	<script src="helpers.js"></script>
+	<!-- <script src="MSNew.js"></script> -->
+</head>
+
+<body>
+	<div id='div1' style='background-color:blue;color:white;display:flex'>hallo</div>
+
+	<div id='div2' style='background-color:red;color:white;'>hallo2</div>
+	<p>das</p>
+	<!-- <p>D3 Tutorials</p>
+	<p>d </p>
+	<p>f </p>
+	<p>y </p> -->
+	<script>
+		function test8_bind() {
+			let myData = ["Hello World!"];
+
+			var p = d3.select("body")
+				.selectAll("p")
+				.data(myData)
+				.text(function (d) {
+					return d;
+				});
+		}
+		function test9_bind_multiple() {
+			let myData = ["Hello World!", "Hello D3", "Hello JavaScript"];
+			var p = d3.select("body")
+				.selectAll("p")
+				.data(myData)
+				.text(function (d, i) {
+					return d;
+				});
+		}
+		function typeOf(x) {
+			let a = typeof (x);
+			return a == 'object' ? x.constructor.name : a;
+		}
+		function test10_typeTests() {
+			let a = [1, 2, 3];
+			//console.log(typeOf(a),a.constructor.name,a);
+			let p1 = d3.selectAll('p');
+			console.log(typeOf(p1), p1);
+			let p2 = p1.nodes();
+			console.log(typeOf(p2), p2);
+
+			// let p3=[...Array.from(p2)];//dont need that! p2 is same as p3!!!
+			// console.log(typeOf(p3),p3);
+		}
+		function test11_bindCreateElements() {
+			let data = [4, 1, 6, 2, 8, 9];
+			let t = 'button';
+			let body = d3.select("body").selectAll(t)
+				.data(data)
+				.enter()
+				.append(t)
+				.text(function (d) { return d + " "; });
+
+		}
+		var d4 = {};
+		d4.div = () => { return document.createElement('div'); }
+		function rcell() {
+			let d = d4.div();
+			console.log(d);
+		}
+		function makeFlexDiv(parentSelector) {
+			let d = d3.select(parentSelector).insert('div')
+				.style('display', 'flex')
+				.style('flex-direction', 'column');
+			return d;
+		}
+		function test12_flexbox() {
+			let div1 = makeFlexDiv('body');
+			console.log(div1);
+			let data = [{ name: 'wood', num: 2 }, { name: 'ore', num: 0 }, { name: 'brick', num: 3 }];
+			div1.selectAll('div').data(data)
+				.enter()
+				.append('div')
+				.text(function (d) { return d.name + ":" + d.num; });
+		}
+		function test13_beh1() {
+			let data = [{ name: 'wood', num: 2 }, { name: 'ore', num: 0 }, { name: 'brick', num: 3 }];
+			rcell();
+
+		}
+		var ms;
+		function test14_newMS() {
+			ms = 'hallo'; //makeMS();
+			console.log(ms);
+		}
+		//test11_bindCreateElements();
+		//test9_bind_multiple();
+		//test12_flexbox();
+		//test13_beh1();
+
+		function test15_resources() {
+			var myData = ["Hello World!"];
+			var res2 = [{ color:'maroon', name: 'wood', num: 3 }, { color:'grey', name: 'ore', num: 2 }, { color:'yellow', name: 'wheat', num: 0 }];
+
+			let dNew = d3.select("body").append("div").style('background-color', 'green');
+			dNew.style('display', 'flex').style('text-align','center');
+			var p = dNew //d3.select("body")
+				.selectAll("p")
+				.data(res2)
+				.enter()
+				.append('div')
+				.style('flex-grow', 1)
+				.style('background-color',function(d){return d.color})
+				.append('div')
+				.text(function (d) { return d.name; })
+				.append('div')
+				.text(function (d) { return d.num; })
+				;
+			console.log('???')
+		}
+		function test16_resources() {
+			var res2 = [{ color:'maroon', name: 'wood', num: 3 }, { color:'grey', name: 'ore', num: 2 }, { color:'yellow', name: 'wheat', num: 0 }];
+
+			let dNew = d3.select("body").append("div").style('background-color', 'green');
+			dNew.style('display', 'flex').style('text-align','center');
+			var p = dNew //d3.select("body")
+				.selectAll("p")
+				.data(res2)
+				.enter()
+				.append('div')
+				.style('flex-grow', 1)
+				.style('background-color',function(d){return d.color})
+				.append('div')
+				.text(function (d) { return d.name; })
+				.append('div')
+				.text(function (d) { return d.num; })
+				;
+			console.log('???')
+		}
+		test16_resources();
+	</script>
+</body>
+
+</html>

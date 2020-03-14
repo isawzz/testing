@@ -1,0 +1,59 @@
+:root{
+	--wTable: 500px;
+	--hTable: 300px;
+}
+
+/* #region #rsg grid */
+body{margin:0;padding:0}
+
+#rsg{
+	display: grid;
+	grid-template-columns: min-content var(--wTable) auto;
+	/* grid-template-columns: min-content fit-content auto; */
+	grid-template-areas: 'ha hb hc' 'a b c';
+	background-color:green;
+	justify-items: stretch;
+	justify-content: stretch;	
+	/* width: 100%; */
+	/* width:auto; */
+}
+#actions{
+	grid-area: a;
+	display: grid;
+	max-height: var(--hTable);
+	background-color:red;
+}
+#game{
+	grid-area: b;
+	background-color:yellow;
+	align-self: stretch;
+}
+#log{
+	grid-area: c;
+	background-color:blue;
+	align-self: stretch;
+}
+
+/* #endregion #rsg grid */
+
+#headerActions{
+	grid-area: ha;
+}
+#headerGame{
+	grid-area: hb;
+}
+#headerLog{
+	grid-area: hc;
+}
+#rsg>div{
+	border-radius: 12px;
+	background-color: grey;
+	margin: 12px;
+
+}
+
+
+
+
+
+

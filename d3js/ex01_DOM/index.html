@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="icon" href="data:;base64,=">
+	<script src="../d3.js"></script>
+	<style>
+		.error {
+			color: red
+		}
+	</style>
+</head>
+
+<body>
+	<p>First paragraph</p>
+	<p id='p2'>Second paragraph</p>
+	<table>
+		<tr>
+			<td> One </td>
+			<td> Two </td>
+		</tr>
+		<tr>
+			<td> Three </td>
+			<td> Four </td>
+		</tr>
+	</table>
+	<div style="border:1px solid">
+		<p>First paragraph.</p>
+	</div>
+	<div id='dCheck'>
+		<input type='checkbox' /><label>Erste</label>
+		<p><input type='checkbox' />Zweite</p>
+		<p><input type='checkbox' />Dritte</p>
+		<p>D3</label><input type="checkbox" /></p>
+		<p>jQuery</label><input type="checkbox" /></p>
+	</div>
+
+	<script>
+		d3.select("p").style("color", "green");
+		d3.select("#p2").style("color", "red");
+		d3.selectAll("p").style("font-size", "20px");
+		d3.select("tr").selectAll("td").style('background-color', 'yellow');
+
+		let el = d3.select('#p2');
+		el.text('Hallo!!!!');
+
+		let el1 = d3.select("body").append("p").text('new para');
+		console.log(el1);
+		console.log(el1.node());
+
+		el = d3.select('p');
+		console.log(el);
+
+		d3.select("div").insert("p").text("Second paragraph.");
+
+		el = d3.select('p');
+		let domel = el.node();
+		let domel1 = el.nodes()[0];
+		console.log('domel', domel, domel1); //YEP!
+
+		//add button that appends a para
+		function appendPara(x) { d3.select("body").append("p").text(x); }
+
+		el = d3.select("body").append("button");
+		el.text('again');
+		domel = el.node();
+		domel.onclick = () => appendPara('oh!'); //alert('hallo!')
+
+		d3.select('#p2').remove();
+		d3.select("p").html("<span>This is new inner html.</span>");
+
+		d3.select("span").attr("class", "error");
+		d3.select("input").property("checked", true);
+		d3.select('#dCheck p').style("font-size", "40px");
+	</script>
+</body>
+
+</html>

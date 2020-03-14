@@ -1,0 +1,65 @@
+:root{
+	--hTable:300px;
+}
+#container { 
+	display: grid; 
+	grid-template-columns: auto auto fit-content(500px) auto auto;	
+	/* grid-template-columns: repeat(auto-fill,auto);	 */
+	/* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));	 */
+	/* grid-template-columns: fit-content(200px) fit-content(150px)  auto  fit-content(350px) 1.5fr;  */
+	grid-gap: 5px; 
+	box-sizing: border-box; 
+	max-height:100px;
+	/* height: 100%; 
+	width: 100%;  */
+	background-color: #563d7c; 
+	padding: 8px; 
+} 
+#container>div{
+	background-color:white;
+}
+#left{
+	max-height:100px;
+	display: flex;
+	flex-flow: column wrap;
+	text-align: left;
+
+}
+#actions{
+	max-height:100px;
+	display: flex;
+	flex-flow: column wrap;
+	text-align: left;
+	background-color:yellow;
+}
+#rsg{
+	display:grid;
+	/* grid-template-columns: fit-content(160px) fit-content(500px) auto; */
+	grid-template-areas: 'a b c';
+	background-color:green;
+	width:auto;
+}
+#actions2{
+	grid-area: a;
+	display:grid;
+	grid-template-columns: auto auto auto auto;
+	align-items: flex-start;
+	/* overflow-x:auto; */
+
+	max-height:100px;
+	background-color:red;
+}
+#game{
+	grid-area: b;
+}
+#log{
+	grid-area: c;
+
+}
+
+
+
+
+
+
+

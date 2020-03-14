@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>front!</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" crossorigin="anonymous" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.12.2/js-yaml.js" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<!-- #region loading -->
+		<script>
+			var FLASK = true; // set false for front tests!!!
+
+			//GSM SETTING:::
+			const LOCALHOST = 'http://localhost:5000/';
+			const NGROK = null; //'http://69f175fa.ngrok.io'; // null;
+
+			//MIRROR SETTING:::::
+			// const LOCALHOST = 'http://localhost:5005/'; //MIRROR SETTING!!!
+			// const NGROK = null;
+			window.onload = () => _sessionStart();
+
+			var JS_FILES = [
+				'_entry',
+				'ActionEngine',
+				'ADecisionUI',
+				'area',
+				'ASender',
+				'behavior',
+				'color',
+				'gameloop',
+				'gHelpers', //TODO: rename to hG
+				'helpers', //TODO: gehoert mal ausgemistet!!!
+				'hPresenters',
+				'init',
+				'initUserSpec',
+				'layout',
+				'MS',
+				'options',
+				'PolyGrid',
+				'processData',
+				'structure',
+				'table',
+				'testFront',
+				'unitTestIOHelpers',
+				'views'
+			];
+			var EXAMPLES = ['examples/catan/catan', 'examples/tictactoe/tictactoe']; //TODO!!!!
+			var CSS_FILES = ['favicon', 'gsm', 'pageLayout', 'selectStyle', 'tabs', 'tooltips'];
+			var OFFLINE = false; //DO NOT CHANGE! TODO: support offline
+		</script>
+
+		<script>
+			var JS_LIBS = ['jquery-3.4.1.min', 'js-yaml.min', 'tooltipster.bundle.min'];
+			var CSS_LIBS = ['tooltipster.bundle.min'];
+
+			function loadScript(src, dir, isLibrary = false, isFLASK = false, isOFFLINE = false) {
+				let script = document.createElement('script');
+				if (isLibrary && isOFFLINE) {
+					script.src = src;
+				} else {
+					// let path = isFLASK ? '' : '.';
+					// path += isLibrary ? '/jslibs/' : '/';
+					// path += src + '.js';
+					let path = '';
+					if (isFLASK) {
+						path = (isLibrary ? '/jslibs/' : '/') + dir + '/';
+					} else {
+						path = (isLibrary ? '/jslibs/' : '/') + dir + '/';
+					}
+					path += src + '.js';
+					script.src = path;
+				}
+				document.getElementsByTagName('head')[0].appendChild(script);
+			}
+			function loadStyle(href, dir, isLibrary = false, isFLASK = false, isOFFLINE = false) {
+				let style = document.createElement('link');
+				style.rel = href == 'favicon' ? 'shortcut icon' : 'stylesheet';
+				if (isLibrary && isOFFLINE) {
+					style.href = href;
+				} else {
+					let path = '';
+					if (isFLASK) {
+						// path = isLibrary ? '/csslibs/' : '/' + dir + '/';
+						// path = "{{ url_for('static', filename='" + href + ".css') }}";
+						path = (isLibrary ? '/csslibs/' : '/') + dir + '/';
+						path += href + (href == 'favicon' ? '.ico' : '.css');
+					} else {
+						path = (isLibrary ? '/csslibs/' : '/') + dir + '/';
+						path += href + (href == 'favicon' ? '.ico' : '.css');
+					}
+					//console.log(path);
+					style.href = path;
+				}
+				document.getElementsByTagName('head')[0].appendChild(style);
+			}
+			// for (const fname of CSS_LIBS) {
+			// 	//console.log(fname, 'hallo!!!!');
+			// 	loadStyle(fname, 'static/lib/css', false, FLASK, OFFLINE);
+			// }
+			for (const fname of CSS_FILES) {
+				//console.log(fname, 'hallo!!!!');
+				loadStyle(fname, 'static/css', false, FLASK, OFFLINE);
+			}
+
+			// for (const fname of JS_LIBS) {
+			// 	loadScript(fname, 'static/lib/js', false, FLASK, OFFLINE);
+			// }
+			for (const fname of JS_FILES) {
+				//console.log(fname);
+				loadScript(fname, 'static/js', false, FLASK, OFFLINE);
+			}
+		</script>
+		<!-- #endregion loading -->
+
+		<!-- #region HTML -->
+		<div id="mainDiv" class="layout1">
+			<div id="area_status" class="area"><p id="statusText">status</p></div>
+			<div id="area_game" class="area"></div>
+			<div id="area_testing" class="area">
+				<div id="area_temp" style="width:100%;height:100%;overflow:hidden">
+					<div class="tab">
+						<button class="tablinks active" onclick="onClickTab(event, 'dummy_objects')">objects</button>
+						<button class="tablinks" onclick="onClickTab(event, 'London')">London</button>
+						<button class="tablinks" onclick="onClickTab(event, 'Paris')">Paris</button>
+						<button class="tablinks" onclick="onClickTab(event, 'Tokyo')">Tokyo</button>
+					</div>
+
+					<div id="dummy_objects" class="tabcontent" style="display:block">
+						<p>London is the capital city of England.</p>
+					</div>
+
+					<div id="London" class="tabcontent">
+						<p>London is the capital city of England.</p>
+					</div>
+
+					<div id="Paris" class="tabcontent">
+						<p>Paris is the capital of France.</p>
+					</div>
+
+					<div id="Tokyo" class="tabcontent">
+						<p>Tokyo is the capital of Japan.</p>
+					</div>
+
+					<!-- <textarea rows="20" cols="40"></textarea> -->
+				</div>
+			</div>
+			<div id="area_buttonsLeft" class="area sideButtons">
+				<!-- <button onclick="clearScreen()">clear screen</button> -->
+				<button onclick="colorAreas(false)">new colors</button>
+				<!-- <button class="buttonSpecial" onclick="saveNicePalette()">save colors</button> -->
+				<br />
+				<br />
+				<button onclick="decider.onClickStep()">STEP</button>
+				<button onclick="newGame()">INIT</button>
+				<!-- <button onclick="restartSameGame()">restart</button> -->
+			</div>
+			<div id="area_log" class="area"><p>log</p></div>
+			<div id="area_buttonsRight" class="area sideButtons">
+				<button id="bTableMode" onclick="toggleSettings(this,['tableMode'],['play','dev'])">play</button>
+				<button id="bTTip" onclick="toggleTooltips(this)">tooltips: OFF</button>
+			</div>
+			<div id="area_actions" class="area">
+				<p>actions</p>
+				<div id="divSelect" class="sidenav1"></div>
+			</div>
+		</div>
+
+		<!-- <div id="tooltip" class="tooltip">tooltip text</div> -->
+		<div id="tooltip" class="tooltip">
+			<div id="ttipTitle">prop</div>
+			<div id="ttipLeft">prop</div>
+			<div id="ttipRight">val</div>
+		</div>
+		<!-- #endregion HTML -->
+	</body>
+</html>

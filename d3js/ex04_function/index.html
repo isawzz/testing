@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="icon" href="data:;base64,=">
+	<script src="../d3.js"></script>
+	<style>
+		.error {
+			color: red
+		}
+	</style>
+</head>
+
+<body>
+	<div id='dCheck'>
+		<p>First</p>
+		<p>Zweite</p>
+		<p>Dritte</p>
+		<p>Error: This is error.</p>
+    <p>Warning:This is warning.</p>	</div>
+	<script>
+		function test1() {
+			var data = [100, 200, 300];
+			var paragraph = d3.select("body")
+				.selectAll("p")
+				.data(data)
+				.text(function (d, i) {
+					console.log("d: " + d);
+					console.log("i: " + i);
+					console.log("this: " + this);
+
+					return d;
+				});
+
+		}
+
+		function test2() {
+			let data = ['red', 'green', 'blue'];
+			var p2 = d3.select('body')
+				.selectAll('p')
+				.data(data)
+				.style('color', function (d, i) {
+					console.log('d', d);
+					console.log('i', i);
+					console.log('this', this);
+					return d;
+				});
+		}
+
+		function calcValue(d, i) {
+			console.log('d', d);
+			console.log('i', i);
+			console.log('this', typeof this, this);
+			console.log(this.innerHTML, this.style.color)
+			return d;
+		}
+
+		function test3() {
+			let data = ['red', 'green', 'blue'];
+			d3.selectAll('p')
+				.data(data)
+				.style('color', 'white')
+				.style('background-color', calcValue);
+		}
+
+		function test4_dynamic() {
+			d3.selectAll("p").style("color", function (d, i) {
+				var text = this.innerText;
+
+				if (text.indexOf("Error") >= 0) {
+					return "red";
+				} else if (text.indexOf("Warning") >= 0) {
+					return "yellow";
+				}
+			});
+		}
+
+		test4_dynamic();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+
+</html>

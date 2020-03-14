@@ -1,0 +1,40 @@
+.flex-container {
+	margin:12px;
+  display: flex;
+  width: calc(100%-24px);
+  /* background-color: green; */
+}
+.flex-item {
+  margin: 20px 0;
+}
+.inflexible {
+  flex: 0 1 100px;
+  background-color: red;
+}
+.flexible {
+  flex: 1;
+  background-color: blue;
+}
+#left {
+	background-color: yellow;
+	max-height: 200px;
+	flex: 1 1 auto;
+	display: flex;
+	flex-flow: column wrap;
+	text-align: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

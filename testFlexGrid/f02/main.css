@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+}
+
+.outer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.block {
+  height: 50%;
+}
+
+.block-1 {
+  background-color: red;
+  resize: vertical; /* resize vertical */
+  overflow: auto; /* resize works for overflow other than visible */
+}
+
+.block-2 {
+  background-color: green;
+  flex: 1; /* adjust automatically */
+  min-height: 0;
+  overflow: hidden; /* hide overflow on small width */
+}
+.slider {
+  text-align: center;
+  letter-spacing: 10px;
+  background-color: #dee2e6;
+  cursor: row-resize;
+  user-select: none; /* disable selection */
+}
+
+
+
+
+
+

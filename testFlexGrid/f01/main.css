@@ -1,0 +1,49 @@
+body {
+	margin: 0;
+	background-color:black;
+}
+.outer {
+	display:grid;
+	grid-template-areas: 'a b';
+	grid-gap: 4px;
+	padding:10px;
+	background-color:blue;
+	/* border-radius: 10px;
+	background-color:grey;
+	margin:12px; */
+}
+.buttons {
+	display:grid;
+	grid-template-areas: 'a b c';
+	grid-gap: 4px;
+	padding:10px;
+	background-color:blue;
+	/* border-radius: 10px;
+	background-color:grey;
+	margin:12px; */
+}
+#left {
+	grid-area: a;
+  background-color: red;
+
+	max-height:100px;
+	display: flex;
+	flex-flow: column wrap;
+	text-align: left;
+
+	padding:10px;
+	border-radius: 10px;
+	background-color:grey;
+}
+#right {
+	grid-area: b;
+	background-color: green;
+	
+	padding:10px;
+	border-radius: 10px;
+	background-color:grey;
+}
+
+
+
+

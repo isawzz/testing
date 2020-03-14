@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+}
+.outer {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+}
+#left {
+  background-color: red;
+	flex: 1;
+	max-height:100px;
+	display: flex;
+	flex-flow: column wrap;
+	width: auto;
+}
+#right {
+  background-color: green;
+  flex: 1; /* adjust automatically */
+  min-height: 0;
+  overflow: hidden; /* hide overflow on small width */
+}
+
+
+
+
+

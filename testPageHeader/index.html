@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<style>
+			.playerHeader {
+				font-family: Arial;
+				background-color: dimgray;
+				color:silver;
+				border-radius:12px;
+				float: left;
+				border: none;
+				outline: none;
+				padding: 14px 16px;
+				transition: 0.3s;
+				font-size: 17px;
+				text-align: center;
+			}
+			.gamePlayer{
+				font-weight: bold;
+				color: white;
+			}
+
+		</style>
+	</head>
+	<body>
+		<h2>Tabs</h2>
+		<p>Click on the buttons inside the tabbed menu:</p>
+
+		<div class="tab">
+			<div class='playerHeader gamePlayer' >
+				<div>dwight (me)</div>
+				<div style='color:red'>Player1</div>
+			</div>
+			<div class='playerHeader' >
+					<div>taka (me)</div>
+					<div  style='color:blue'>Player2</div>
+				</div>
+			</div>
+
+		<div id="London" class="tabcontent">
+			<h3>London</h3>
+			<p>London is the capital city of England.</p>
+		</div>
+
+		<div id="Paris" class="tabcontent">
+			<h3>Paris</h3>
+			<p>Paris is the capital of France.</p>
+		</div>
+
+		<div id="Tokyo" class="tabcontent">
+			<h3>Tokyo</h3>
+			<p>Tokyo is the capital of Japan.</p>
+		</div>
+
+		<script>
+			function openCity(evt, cityName) {
+				var i, tabcontent, tablinks;
+				tabcontent = document.getElementsByClassName('tabcontent');
+				for (i = 0; i < tabcontent.length; i++) {
+					tabcontent[i].style.display = 'none';
+				}
+				tablinks = document.getElementsByClassName('tablinks');
+				for (i = 0; i < tablinks.length; i++) {
+					tablinks[i].className = tablinks[i].className.replace(' active', '');
+				}
+				document.getElementById(cityName).style.display = 'block';
+				evt.currentTarget.className += ' active';
+			}
+		</script>
+	</body>
+</html>

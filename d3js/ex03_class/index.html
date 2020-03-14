@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="icon" href="data:;base64,=">
+	<script src="../d3.js"></script>
+	<style>
+		.error {
+			color: red
+		}
+	</style>
+</head>
+
+<body>
+	<div id='dCheck'>
+		<p>First</p>
+		<p>Zweite</p>
+		<p>Dritte</p>
+		<p>D3</p>
+		<p>dummes ding!</p>
+	</div>
+	<button onclick='toggleClassed(5)'>Start</button>
+
+	<script>
+		//careful!!! nth-child(n) requires a param!!!!!!!
+		//d3.selectAll('#dCheck :nth-child(even)').style("font-size", "40px");
+
+		var sel='even';
+		function toggle(n){
+			d3.selectAll('#dCheck :nth-child('+sel+')').style("font-size", "20px");
+			sel = sel == 'even'?'odd':'even';
+			d3.selectAll('#dCheck :nth-child('+sel+')').style("font-size", "40px");
+			if (n>1) setTimeout(()=>toggle(n-1),500);
+		}
+
+		function toggleClassed(n){
+			console.log(d3.select('#dCheck :nth-child(1)').attr('class'));
+			console.log(d3.select('#dCheck :nth-child(1)').classed('error'));
+			d3.selectAll('#dCheck :nth-child('+sel+')').classed("error", true);
+			sel = sel == 'even'?'odd':'even';
+			d3.selectAll('#dCheck :nth-child('+sel+')').classed("error", false);
+			if (n>1) setTimeout(()=>toggleClassed(n-1),500);
+		}
+
+	</script>
+</body>
+
+</html>

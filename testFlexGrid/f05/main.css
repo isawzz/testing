@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+}
+#outer {
+	display:block;
+	
+	border-radius: 10px;
+	background-color:grey;
+}
+#left {
+	float:left;
+  background-color: red;
+
+	max-height:100px;
+	display: flex;
+	flex-flow: column wrap;
+	text-align: left;
+
+}
+#right {
+  background-color: green;
+}
+#buttons{
+	clear: left;
+}
+
+
+
+

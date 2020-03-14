@@ -1,0 +1,209 @@
+:root {
+	--baltbg: null;
+	--bbg: null;
+	--bhbg: null;
+	--babg: null;
+	--bgBody: null;
+
+	--pal0_0: null;
+	--pal0_1: null;
+	--pal0_2: null;
+	--pal0_3: null;
+	--pal0_4: null;
+	--pal0_5: null;
+	--pal0_6: null;
+	--pal0_7: null;
+	--pal1_0: null;
+	--pal1_1: null;
+	--pal1_2: null;
+	--pal1_3: null;
+	--pal1_4: null;
+	--pal1_5: null;
+	--pal1_6: null;
+	--pal1_7: null;
+	--pal2_0: null;
+	--pal2_1: null;
+	--pal2_2: null;
+	--pal2_3: null;
+	--pal2_4: null;
+	--pal2_5: null;
+	--pal2_6: null;
+	--pal2_7: red;
+
+	--w_1: 200px;
+	--w_2: 800px;
+	--w_3: auto;
+
+	--h_1: 40px;
+	--h_2: 700px;
+	--h_3: auto;
+	--h_4: auto;
+	--hTesting3: auto;
+
+	--hTabs: 30px;
+}
+body,
+html {
+	margin: 0px;
+	padding: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: var(--bgBody);
+}
+.layout1 {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	display: grid;
+	grid-template-columns: var(--w_1) var(--w_2) var(--w_3);
+	grid-template-rows: var(--h_1) var(--h_2) var(--h_3);
+	grid-template-areas:
+		'a s l'
+		'a g l'
+		'bl t br';
+	grid-gap: 4px;
+	background-color: transparent;
+	min-height: 100%;
+	width: 100%;
+	color: white;
+	padding: 8px;
+	box-sizing: border-box;
+	z-index: -3;
+}
+.svg {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	/* background-color: red; */
+	/* z-index: -1; */
+}
+.gCentered {
+	transform: translateX(50%) translateY(50%);
+}
+.area {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	z-index: 0;
+	overflow: auto;
+}
+.area > p {
+	min-width: 180px;
+	margin: 3px 10px;
+}
+.sidenav1 > p {
+	min-width: 180px;
+	margin: 3px 10px;
+}
+button {
+	display: inline-block;
+	margin: 2px;
+	padding: 0px;
+	font-size: 12pt;
+	font-family: Verdana;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	outline: none;
+	color: #fff;
+	border: none;
+	border-radius: 12px;
+	width: 160px;
+	padding: 6px 6px 6px 8px;
+	margin-top: 6px;
+	background-color: var(--bbg);
+}
+.buttonSpecial {
+	/* height: 50;
+	width: 50;
+	border-radius: 25;
+	border: blue; */
+	background-color: var(--baltbg);
+	color: white;
+	/* font-size: 12px; */
+}
+button:hover {
+	background-color: var(--bhbg);
+}
+button:active {
+	background-color: var(--babg);
+}
+#area_status {
+	grid-area: s;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	/* background-color: rgb(226, 192, 43); */
+}
+#area_buttonsLeft {
+	width: 100%;
+	min-width: var(--w_1);
+	grid-area: bl;
+	min-height: 800px;
+	overflow: hidden;
+	text-align: center;
+}
+#area_testing {
+	width: 100%;
+	grid-area: t;
+	min-height: 800px;
+	overflow: hidden;
+	text-align: center;
+}
+#area_buttonsRight {
+	width: 100%;
+	min-width: var(--w_1);
+	grid-area: br;
+	min-height: 800px;
+	overflow: hidden;
+	text-align: center;
+}
+#area_game {
+	grid-area: g;
+	/* background-color: rgb(45, 167, 76); */
+	overflow: hidden;
+}
+#area_log {
+	grid-area: l;
+	min-width: var(--w_1);
+	/* background-color: rgb(233, 222, 73); */
+	overflow: hidden;
+}
+#area_actions {
+	grid-area: a;
+	min-width: var(--w_1);
+	overflow: hidden;
+	/* background-color: rgb(155, 76, 219); */
+}
+#area_player {
+	grid-area: p;
+	/* background-color: rgb(155, 76, 219); */
+}
+#area_testing > button {
+	width: 120px;
+}
+textarea {
+	margin: 20px;
+	margin-top: 30px;
+	padding: 10px;
+	font-size: 12pt;
+	border-radius: 10px;
+}
+
+.ttip {
+	padding: 8px;
+	border: 1px solid black;
+	background-color: rgb(200, 200, 200);
+	position: absolute;
+	z-index: 2;
+	pointer-events: none;
+	display: none;
+}

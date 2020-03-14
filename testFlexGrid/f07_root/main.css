@@ -1,0 +1,44 @@
+:root{
+	--wTable: 500px;
+	--hTable: 300px;
+}
+
+/* #region #rsg grid */
+
+#rsg{
+	display: grid;
+	grid-template-columns: min-content var(--wTable) auto;
+	grid-template-areas: 'a b c';
+	background-color:green;
+	justify-items: stretch;
+	justify-content: stretch;	
+}
+#actions{
+	grid-area: a;
+	display: grid;
+	max-height: var(--hTable);
+	background-color:red;
+}
+#game{
+	grid-area: b;
+	background-color:yellow;
+	align-self: stretch;
+}
+#log{
+	grid-area: c;
+	background-color:blue;
+}
+/* #endregion #rsg grid */
+
+/* #region header and content items */
+#rsg>div{
+	border-radius: 12px;
+	background-color: grey;
+	margin: 12px;
+}
+.headerItem{
+	align-self: stretch;
+	background-color: grey;
+}
+
+

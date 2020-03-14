@@ -1,0 +1,65 @@
+body{margin:0;padding:0;background-color:green;}
+
+
+/* #region #rsg grid */
+#rsg{
+	display: inline-grid;
+	grid-template-columns: min-content minmax(300,auto) min-content;
+	grid-template-areas: 'ha hb hc' 'a b c';
+	
+	justify-items: stretch;
+	justify-content: stretch;	
+}
+#actions{
+	grid-area: a;
+	display: grid;
+	min-height: 150px;
+}
+#table{
+	display: inline-grid;
+	grid-template-columns: auto auto;
+	/* grid-template-columns: auto auto; */
+	grid-area: b;
+	align-self: stretch;
+}
+#log{
+	grid-area: c;
+	align-self: stretch;
+}
+
+/* #endregion #rsg grid */
+
+/* #region #root grid and headers */
+
+#root{
+	display: grid;
+	grid-template-rows: min-content auto auto auto auto;
+	grid-template-areas: 'i' 'g' 'o' 's' 'd' ;
+	justify-items: stretch;
+	justify-content: stretch;	
+	padding:2px;
+	text-align:center;
+}
+#rsg>div, #pageHeader, #test3>div, #test>div, #test2>div, #test3>div{
+	border-radius: 12px;
+	background-color: grey;
+	margin: 4px;
+}
+#test, #test2, #test3{
+	display:grid;
+	grid-template-columns: min-content auto;
+}
+#headerActions{
+	grid-area: ha;
+}
+#headerGame{
+	grid-area: hb;
+}
+#headerLog{
+	grid-area: hc;
+}
+
+/* #endregion #root */
+
+
+

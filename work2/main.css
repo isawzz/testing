@@ -1,0 +1,27 @@
+body{margin:0;padding:0;}
+
+#rsg{
+	display: grid;
+	grid-template-columns: auto auto auto;
+	padding:10px;
+	margin:20px;
+	border-radius:10px;
+	text-align:center;
+	background-color:silver;
+}
+#action{
+	/* float:left; */
+	padding:10px;
+	background-color:white;
+	margin-right:10px;
+	/* height: 100vh; */
+}
+#game{
+	background-color: silver;
+	padding:10px;
+} 
+/* #table{
+	margin:10px; 
+	width:calc(100% - 20px);
+} */
+

@@ -2,26 +2,27 @@ body{margin:0;padding:0;}
 
 #rsg{
 	display: grid;
-	grid-template-columns: auto auto auto;
-	padding:10px;
-	margin:20px;
-	border-radius:10px;
-	text-align:center;
-	background-color:silver;
+	grid-template-columns: min-content auto auto;
+	grid-gap:8px;
+	margin:8px;
 }
 #action{
-	/* float:left; */
-	padding:10px;
-	background-color:white;
-	margin-right:10px;
-	/* height: 100vh; */
+	width: 100%;
+	min-width: 50px;
 }
 #game{
-	background-color: silver;
-	padding:10px;
+	width:100%;
 } 
-/* #table{
-	margin:10px; 
-	width:calc(100% - 20px);
-} */
+
+.button{
+	margin:10px;
+	padding:8px;
+}
+
+.liste{
+	display:flex;
+	flex-direction: row;
+	background-color:yellow;
+}
+
 

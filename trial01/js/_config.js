@@ -22,6 +22,11 @@ const SHOW_CODE = false; // true | false
 const SHOW_SERVERDATA = false; // true | false
 const SHOW_SPEC = true; // true | false
 
+// testing vars
+var timit;
+var t_total = 0;
+var t_avg = 0;
+
 
 
 
@@ -53,11 +58,6 @@ const USE_ALL_GAMES_ROUTE = false; // true | false //false means directly loadin
 var SPEC = null; //merged userSpec and defaultSpec
 var GAMEPLID = null; //game player id
 var PGAMEPLID = null; //prev game player id
-
-// performance *** TIMER ***
-var timit;
-var t_total = 0;
-var t_avg = 0;
 
 //settings that might change but unlikely:
 //const INIT_CLEAR_LOCALSTORAGE = false; // true | false >>see above USE_LOCAL_STORAGE

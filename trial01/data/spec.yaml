@@ -31,6 +31,15 @@ staticSpec:
           - type: dict # player info
             id: info_loc
 
+  root00:
+    type: panel
+    params:
+      orientation: h
+      split: 0.6
+    panels:
+      - id: market_loc
+      - id: me_loc
+
   root:
     type: panel
     params:

@@ -4,12 +4,12 @@ function asList(x) { return isList(x) ? x : [x]; }
 function mAppend(d, child) { d.appendChild(child); }
 function mBg(d, color) { d.style.backgroundColor = color; }
 function mBy(id) { return document.getElementById(id); }
-function mNull(d,attr){d.removeAttribute(attr);}
+function mNull(d, attr) { d.removeAttribute(attr); }
 function mClass(d) { for (let i = 1; i < arguments.length; i++) d.classList.add(arguments[i]); }
 function mCreate(tag) { return document.createElement(tag); }
 function mDestroy(elem) { if (isString(elem)) elem = mById(elem); elem.parentNode.removeChild(elem); }
 function mDiv(dParent = null) { let d = mCreate('div'); if (dParent) mAppend(dParent, d); return d; }
-function mDiv100(dParent = null) { let d = mDiv(dParent);mSize(d,100,100,'%'); return d; }
+function mDiv100(dParent = null) { let d = mDiv(dParent); mSize(d, 100, 100, '%'); return d; }
 function mDivPosAbs(x = 0, y = 0, dParent = null) { let d = mCreate('div'); if (dParent) mAppend(dParent, d); mPos(d, x, y); return d; }
 function mDivPosRel(x = 0, y = 0, dParent = null) { let d = mCreate('div'); if (dParent) mAppend(dParent, d); mPosRel(d, x, y); return d; }
 function mFg(d, color) { d.style.color = color; }
@@ -39,6 +39,7 @@ function mPosAbs(d) { d.style.position = 'absolute'; }
 function mPosRel(d, x, y, unit) { d.style.position = 'relative'; if (isdef(x)) mStyle(d, { left: x, top: y }, unit); }
 function mRot(d, angle) { d.style.transform = 'rotate(' + angle + 'deg)'; }
 function mSize(d, w, h, unit = 'px') { mStyle(d, { width: w, height: h }, unit); }
+function mMinSize(d, w, h, unit = 'px') { mStyle(d, { 'min-width': w, 'min-height': h }, unit); }
 function mSizePic(d, w, h = 0, unit = 'px') { return mStyle(d, { 'font-size': h / 2, 'font-weight': 900, 'padding-top': h / 4, 'text-align': 'center', 'box-sizing': 'border-box', width: w, height: h ? h : w }, unit); }
 function mStyle(elem, styles, unit = 'px') { for (const k in styles) { elem.style.setProperty(k, makeUnitString(styles[k], unit)); } }
 function mTextDiv(text, dParent = null) { let d = mCreate('div'); d.innerHTML = text; return d; }
@@ -128,7 +129,6 @@ class LazyCache {
 		return proxy;
 	}
 }
-
 class CacheDict {
 	constructor(primKey, { func = null } = {}, useLocal = true) {
 		this.primKey = primKey; //this is key under which object is stored in localStorage/indexedDB
@@ -215,8 +215,6 @@ class ScriptLoader {
 		})
 	}
 }
-
-
 
 //#region Timit
 class TimeIt {
@@ -1749,18 +1747,21 @@ function getUID(pref = '') {
 //#endregion
 
 //#region io
-function consExpand(o,keys,indent=0){
-	console.log('.'.repeat(indent),o);
-	for(const k in o){
+var isTraceOn = true; // true | false
+function trace(){if (isTraceOn) console.log('___ ',getFunctionsNameThatCalledThisFunction(),...arguments);}
+
+function consExpand(o, keys, indent = 0) {
+	console.log('.'.repeat(indent), o);
+	for (const k in o) {
 		if (!keys.includes(k)) continue;
-		let oNew=o[k];
-		console.log('.'.repeat(indent),k+':')
-		if (isList(oNew)){
-			for(const el of oNew){
-				consExpand(el,keys,indent+2);
+		let oNew = o[k];
+		console.log('.'.repeat(indent), k + ':')
+		if (isList(oNew)) {
+			for (const el of oNew) {
+				consExpand(el, keys, indent + 2);
 			}
-		}else if (isDict(oNew)){
-			consExpand(oNew,keys,indent+2);
+		} else if (isDict(oNew)) {
+			consExpand(oNew, keys, indent + 2);
 		}
 	}
 
@@ -1770,21 +1771,21 @@ function error(msg) {
 	let fname = getFunctionsNameThatCalledThisFunction();
 	console.log(fname, 'ERROR!!!!! ', msg);
 }
-function compactObjectString(o){
-	let s='';
+function compactObjectString(o) {
+	let s = '';
 	for (const k in o) {
 		if (isSimple(o[k]) && !isComplexColor(o[k])) {
 			if (isDict(o[k])) {
-				console.log('!!!!!!!!!!!!!!!!isDict',o[k]);
+				console.log('!!!!!!!!!!!!!!!!isDict', o[k]);
 			}
 			s += k + ':' + o[k] + ' ';
-			
+
 			// s += k + ':' + (isDict(o[k])?compactObjectString(o[k]):o[k]) + ' ';
 		}
 	}
 	return s;
 }
-function extendedObjectString(o,indent,simple,plus,minus){
+function extendedObjectString(o, indent, simple, plus, minus) {
 	//console.log('indent',indent)
 	let s = ' '.repeat(indent) + (o.id ? o.id + ': ' : ' _ : ');
 
@@ -1793,31 +1794,31 @@ function extendedObjectString(o,indent,simple,plus,minus){
 		//console.log(k,plus && plus.includes(k))
 
 		if (k == 'id') continue;
-		if (plus && plus.includes(k) 
-		|| minus && !minus.includes(k) 
-		|| simple && isSimple(o[k]) && !isComplexColor(o[k])) {
+		if (plus && plus.includes(k)
+			|| minus && !minus.includes(k)
+			|| simple && isSimple(o[k]) && !isComplexColor(o[k])) {
 			if (isDict(o[k])) {
 				//console.log('???????!!!!!!!!!!!!!!!!isDict',o[k]);
 				// s+=compactObjectString(o[k]);
-				s+= '('+extendedObjectString(o[k],indent,simple,plus,minus)+') ';
-			}	else s += k + ':' + o[k] + ' ';
+				s += '(' + extendedObjectString(o[k], indent, simple, plus, minus) + ') ';
+			} else s += k + ':' + o[k] + ' ';
 		}
 	}
 	return s;
 }
-function showFullObject(o,indent=0){
-	for(const k in o){
-		if (isSimple(o[k])) console.log(' '.repeat(indent),k,o[k]);
+function showFullObject(o, indent = 0) {
+	for (const k in o) {
+		if (isSimple(o[k])) console.log(' '.repeat(indent), k, o[k]);
 		else {
-			console.log(' '.repeat(indent),k);
-			showFullObject(o[k],indent+2);
+			console.log(' '.repeat(indent), k);
+			showFullObject(o[k], indent + 2);
 		}
 	}
 }
 
 
 function showObject(o, indent = 0, simple = true, plus = null, minus = null) {
-	let s=extendedObjectString(o,indent,simple,plus,minus);
+	let s = extendedObjectString(o, indent, simple, plus, minus);
 	console.log(s);
 }
 function showTree(o, childrenKeys = ['panels', 'elm'], plus, minus) {
@@ -1838,7 +1839,7 @@ function recShowTree(o, indent, childrenKeys, plus, minus) {
 	let chkey = findFirstListKey(o, childrenKeys);
 	//console.log(chkey,o[chkey])
 	if (chkey) {
-		console.log(' '.repeat(indent+2) + chkey + ':');
+		console.log(' '.repeat(indent + 2) + chkey + ':');
 		for (const ch of o[chkey]) {
 			recShowTree(ch, indent + 4, childrenKeys, plus, minus);
 		}
@@ -2495,7 +2496,7 @@ function isListOfLiterals(lst) {
 function isNumber(param) { return !isNaN(Number(param)); }
 function isNumeric(x) { return !isNaN(+x); }
 function isSet(x) { return (isDict(x) && (x.set || x._set)); }
-function isComplexColor(x){return isString(x) && x.includes('('); }
+function isComplexColor(x) { return isString(x) && x.includes('('); }
 function isSimple(x) { return isString(x) || isNumeric(x); }
 function isString(param) { return typeof param == 'string'; }
 function isSvg(elem) { return startsWith(elem.constructor.name, 'SVG'); }

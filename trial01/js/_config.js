@@ -4,33 +4,42 @@ var PLAYMODE = 'hotseat'; // multiplayer | hotseat | solo | passplay
 var SEED = 1;
 
 const TESTING = true; // true | false //uses files from tests, DOES NOT send routes to server, instead: server stub
-const RUNTEST = false; // true | false //just runTest preprocess serverData, pageHeaderInit, and clear
-
-//*** TESTING *** uses files in /tests/GAME/uspecN and codeN, NO caching of uspec, code, and data!
-const TEST_VERSION = '17'; // | null to use genauere
-const DSPEC_PATH = '/wCOMMON/defaultSpec'
-const DSPEC_VERSION = 4;
-const CODE_VERSION = null;
-
-//*** additional *** TESTING *** settings */
-const USPEC_VERSION = '00';
-const SERVERDATA_VERSION = 2; ///nur ttt!!!!!!!!!!!
+const TEST_VERSION = '01'; // | null to use genauere
 const TEST_PATH = '/work/';
-const USE_NON_TESTING_DATA = false; //uses spec,code from /games instead of /zdata
 
-const INCREMENTAL_UPDATE = true; // diff is run after preProcessing serverData!
+const DSPEC_PATH = '/assets/zdata/defaultSpec'
+const DSPEC_VERSION = 4;
+
 const USE_LOCAL_STORAGE = true; // true | false //localStorage is cleared when false!!!!!
 const USE_MAX_PLAYER_NUM = false; // true | false
 
 const TIMIT_SHOW = false; // true | false
 const VERBOSE = true; // true | false
-const SHOW_SERVER_ROUTE = false; // true | false
-const SHOW_SERVER_RETURN = false; // true | false
+const SHOW_SERVER_ROUTE = true; // true | false
+const SHOW_SERVER_RETURN = true; // true | false
 const SHOW_CODE = false; // true | false
 const SHOW_SERVERDATA = true; // true | false
 const SHOW_SPEC = true; // true | false
 
-//ONLY used when *** NOT testing: ***
+
+
+
+
+
+
+const RUNTEST = false; // true | false //just runTest preprocess serverData, pageHeaderInit, and clear
+
+//*** TESTING *** uses files in /tests/GAME/uspecN and codeN, NO caching of uspec, code, and data!
+const CODE_VERSION = null;
+
+//*** additional *** TESTING *** settings */
+const USPEC_VERSION = '00';
+const SERVERDATA_VERSION = 2; ///nur ttt!!!!!!!!!!!
+const USE_NON_TESTING_DATA = false; //uses spec,code from /games instead of /zdata
+
+const INCREMENTAL_UPDATE = true; // diff is run after preProcessing serverData!
+
+//ONLY used when *** NOT testing: *** >>dazu muss flask server laufen!!!!
 var VERSION = '_02'; //files sollen heissen [GAME]_01.yaml and [GAME]_01.js, und im richtigen dir sein!!
 var CACHE_DEFAULTSPEC = false;
 var CACHE_USERSPEC = false;

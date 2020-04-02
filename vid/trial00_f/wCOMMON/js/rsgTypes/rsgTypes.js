@@ -1,3 +1,7 @@
+const RSGTYPES = { board: 1, hand: 2, field: 101, edge: 102, corner: 103 };//unter 100:container types
+const CARD_SZ = 80;
+const LABEL_SZ = 40;
+const FIELD_SZ = 40;
 //default rsg types:
 var DEF_LIST_TYPE = 'dom';
 var DEF_ITEM_TYPE = 'dom';

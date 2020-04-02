@@ -21,8 +21,8 @@ body{margin:0;padding:0;}
 
 .liste{
 	display:flex;
-	flex-direction: row;
-	background-color:yellow;
+	/* flex-direction: row;
+	background-color:yellow; */
 }
 
 

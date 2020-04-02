@@ -4,6 +4,7 @@ function asList(x) { return isList(x) ? x : [x]; }
 function mAppend(d, child) { d.appendChild(child); }
 function mBg(d, color) { d.style.backgroundColor = color; }
 function mBy(id) { return document.getElementById(id); }
+function mNull(d,attr){d.removeAttribute(attr);}
 function mClass(d) { for (let i = 1; i < arguments.length; i++) d.classList.add(arguments[i]); }
 function mCreate(tag) { return document.createElement(tag); }
 function mDestroy(elem) { if (isString(elem)) elem = mById(elem); elem.parentNode.removeChild(elem); }

@@ -22,7 +22,7 @@
 .main {
   text-align: left;
 	background: deepskyblue;
-	overflow-x: hidden;
+	/* overflow-x: hidden; */
 }
 
 .aside-1 {

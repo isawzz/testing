@@ -33,18 +33,36 @@ async function gameStep() {
 
 	//#endregion
 
+	testLayout01();
+	return;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	hide('test1');hide('test2');hide('test3');
+
 	//console.log(sData);
 	let G0 = createRoot('table',SPEC);
 	parseStaticSpec(G0);
 	parseDynamicSpec(G0);
 
-	let G2 = createRoot('table2',jsCopy(SPEC));
-	parseStaticSpec(G2);
-	parseDynamicSpec(G2);
+	// let G2 = createRoot('table2',jsCopy(SPEC));
+	// parseStaticSpec(G2);
+	// parseDynamicSpec(G2);
 
-	let G3 = createRoot('table3',jsCopy(SPEC));
-	parseStaticSpec(G3);
-	parseDynamicSpec(G3);
+	// let G3 = createRoot('table3',jsCopy(SPEC));
+	// parseStaticSpec(G3);
+	// parseDynamicSpec(G3);
 
 	// let G2 = createRoot('table3',SPEC);
 	// parseStaticSpec(G2);
@@ -60,6 +78,12 @@ async function gameStep() {
 	//console.log('__________________')
 	//showTree(G1.root,['panels', 'elm'], ['params']);
 	//console.log('__________________')
+}
+
+function testLayout01(){
+	let d=mBy('table');
+	setTableSize('table',500,300)
+	mColor(d,'blue');
 }
 
 
@@ -83,8 +107,12 @@ function initUI() {
 async function loadAssetsfe() {
 	vidCache = new LazyCache(!USE_LOCAL_STORAGE);
 
+	// console.log('haaaaaaaaaaaaaaaaaaaaaaa')
 	testCardsC = await vidCache.load('testCards', async () => await route_rsg_asset('testCards', 'yaml'));
 	testCards = vidCache.asDict('testCards');
+
+	// console.log(testCards)
+
 	iconCharsC = await vidCache.load('iconChars', route_iconChars);
 	iconChars = vidCache.asDict('iconChars');
 	c52C = await vidCache.load('c52', route_c52);

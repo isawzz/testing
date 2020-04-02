@@ -11,9 +11,54 @@ async function loadAssets() {
 	iconChars = vidCache.asDict('iconChars');
 	c52C = await vidCache.load('c52', route_c52);
 	c52 = vidCache.asDict('c52');
+}
+async function loadGameInfo(useAllGamesStub = true) {
 
-	allGamesC = await vidCache.load('allGames', route_allGames);
-	allGames = vidCache.asDict('allGames');
+	if (useAllGamesStub) {
+		allGames = {
+			ttt: {
+				name: 'TicTacToe',
+				long_name: 'Tic-Tac-Toe',
+				short_name: 'ttt',
+				num_players: [2],
+				player_names: ['Player1', 'Player2'],
+			},
+			s1: {
+				name: 's1',
+				long_name: 's1',
+				short_name: 's1',
+				num_players: [2, 3, 4, 5],
+				player_names: ['Player1', 'Player2', 'Player3', 'Player4', 'Player5'],
+			},
+			starter: {
+				name: 'Starter',
+				long_name: 'Starter',
+				short_name: 'starter',
+				num_players: [2],
+				player_names: ['Player1', 'Player2'],
+			},
+			catan: {
+				name: 'Catan',
+				long_name: 'The Settlers of Catan',
+				short_name: 'catan',
+				num_players: [3, 4],
+				player_names: ['White', 'Red', 'Blue', 'Orange'],
+			},
+			aristocracy: {
+				name: 'Aristocracy',
+				long_name: 'Aristocracy',
+				short_name: 'aristocracy',
+				num_players: [2, 3, 4, 5],
+				player_names: ['Player1', 'Player2', 'Player3', 'Player4', 'Player5'],
+			}
+		
+		};
+	
+	} else {
+		allGamesC = await vidCache.load('allGames', route_allGames);
+		allGames = vidCache.asDict('allGames');
+	}
+
 	////console.log('allGames', GAME, allGames[GAME]);
 	playerConfig = stubPlayerConfig(allGames); //stub to get player info
 	// //console.log('playerConfig', playerConfig[GAME]);
@@ -226,7 +271,7 @@ function stubPlayerConfig(gameInfo) {
 	////console.log('-------------------',gcs);
 }
 function updatePlayerConfig() {
-	let keysPlayerColors = Object.keys(playerColors);
+	let keysPlayerColors = Object.keys(PLAYER_COLORS);
 	//let players = playerConfig[GAME].players;
 
 	//match colors to better colors!
@@ -236,7 +281,7 @@ function updatePlayerConfig() {
 		let colorName = isdef(pl.color) ? pl.color : keysPlayerColors[iColor];
 		colorName = colorName.toLowerCase();
 		let altName = capitalize(colorName);
-		let color = isdef(playerColors[colorName]) ? playerColors[colorName] : colorName;
+		let color = isdef(PLAYER_COLORS[colorName]) ? PLAYER_COLORS[colorName] : colorName;
 
 
 		playerConfig[GAME].players[id].color = color;

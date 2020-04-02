@@ -11,42 +11,25 @@ html,body{
 	margin:0;
 }
 /* #endregion root, body, html */
-
-/* #region #rsg grid */
-#rsg{
-	display: inline-grid;
-	grid-template-columns: min-content minmax(300px,min-content) auto;
-	grid-template-areas: 'ha hb hc' 'a b c';
-	
-	justify-items: stretch;
-	justify-content: stretch;	
+div{
+	text-align:center;
 }
-#actions{
-	grid-area: a;
-	display: grid;
-	min-height: 150px;
+#root{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+  align-items: center;
+}
+#rsg{
+	display:flex;
+	flex:1;
+}
+#middle{
+	flex: 1;
 }
 #table{
-	display: inline-grid;
-	grid-area: b;
-	align-self: stretch;
-}
-#log{
-	grid-area: c;
-	align-self: stretch;
-}
-
-/* #endregion #rsg grid */
-
-/* #region #root grid and headers */
-#root{
-	display: grid;
-	grid-template-rows: min-content auto auto auto auto;
-	grid-template-areas: 'i' 'g' 'o' 's' 'd' ;
-	justify-items: stretch;
-	justify-content: stretch;	
-	padding:2px;
-	text-align:center;
+	min-width:300px;
+	min-height:200px;
 }
 #rsg>div, #pageHeader, #test>div, #test3>div, #test2>div{
 	border-radius: 8px;
@@ -54,26 +37,9 @@ html,body{
 	margin: 4px;
 	padding: 4px;
 }
-#buttons>*{
-	white-space: nowrap;
-	display:block;
+#pageHeader{
+	padding:0px 120px;
 }
-#test, #test2, #test3{
-	display:grid;
-	grid-template-columns: min-content auto;
-}
-#headerActions{
-	grid-area: ha;
-}
-#headerGame{
-	grid-area: hb;
-}
-#headerLog{
-	grid-area: hc;
-}
-
-/* #endregion #root */
-
 /* #region flexWrap */
 .flexWrap{
 	display:flex;

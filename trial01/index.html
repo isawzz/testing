@@ -8,7 +8,7 @@
 	<title>happy!</title>
 	<script src="/extlibs/js-yaml.min.js"></script>
 	<script src="/extlibs/d3.min.js"></script>
-	<link href="./main.css" rel="stylesheet">
+	<link href="./main2.css" rel="stylesheet">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
 				<div id='headerActions' class='headerItem'>header</div>
 				<div id='actions'>actions</div>
 			</div>
-			<div>
+			<div id='middle'>
 				<div id='headerGame' class='headerItem'>header</div>
 				<div id='table'>table</div>
 			</div>
@@ -32,8 +32,9 @@
 		</div>
 		<div id='test'>
 			<div id='buttons'>
-				<button onclick='fillActions2("actions",35,100)'>size big</button>
-				<button onclick='fillActions2("actions",35,100)'>size small</button>
+				<button id='bNextMove'></button>
+				<button onclick='onClickSizeBig()'>size big</button>
+				<button onclick='onClickSizeSmall()'>size small</button>
 				<!-- <button onclick='fillActions2("actions",70,100)'>fill 70</button>
 					<button onclick='fillActions2("actions",35,100)'>fill 35</button>
 					<button onclick='fillActions2("actions",10,100)'>fill 10</button><br><br>

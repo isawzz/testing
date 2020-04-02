@@ -68,15 +68,13 @@ async function loadGameInfo(useAllGamesStub = true) {
 	// //console.log('allGames', allGames.catan);
 	// //console.log(vidCache);
 }
-async function loadSpec() {
+async function loadSpec(path) {
 	if (TESTING) {
 
-		let url = DSPEC_PATH + DSPEC_VERSION + '.yaml'; //TEST_PATH + 'defaultSpec' + DSPEC_VERSION + '.yaml';
+		let url = DSPEC_PATH + '.yaml'; 
 		defaultSpecC = await vidCache.load('defaultSpec', async () => await route_path_yaml_dict(url), true, false);// last 2 params: reload, useLocal
 
-		url = TEST_VERSION ? TEST_PATH + 'u' + TEST_VERSION + '.yaml'
-			: TEST_PATH + GAME + '/uspec' + USPEC_VERSION + '.yaml';
-
+		url = (isdef(path)?path: SPEC_PATH) + '.yaml';
 		if (USE_NON_TESTING_DATA) url = '/games/' + GAME + '/_rsg/' + GAME + VERSION + '.yaml';
 		userSpecC = await vidCache.load('userSpec', async () => await route_test_userSpec(url), true, false);// last 2 params: reload, useLocal
 
@@ -134,8 +132,7 @@ async function loadInitialServerData(unameStarts) {
 	_syncUsernameOfSender(unameStarts);
 
 	if (TESTING) {
-		let url = TEST_VERSION ? TEST_PATH + 'd' + TEST_VERSION + '.yaml'
-			: TEST_PATH + GAME + '/data' + SERVERDATA_VERSION + '_' + initialPath + '.yaml';
+		let url = SERVERDATA_PATH+ '.yaml';
 		serverDataC = initialDataC[GAME] = await vidCache.load('_initial_' + initialPath, async () => await route_path_yaml_dict(url), true, false); // last 2 params: reload, useLocal
 	} else {
 		serverDataC = initialDataC[GAME] = await vidCache.load('_initial_' + initialPath, async () => await route_initGame(GAME, playerConfig[GAME], USERNAME), !CACHE_INITDATA, CACHE_INITDATA); // last 2 params: reload, useLocal 

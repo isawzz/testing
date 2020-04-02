@@ -7,18 +7,19 @@ const TESTING = true; // true | false //uses files from tests, DOES NOT send rou
 const TEST_VERSION = '01'; // | null to use genauere
 const TEST_PATH = '/work/';
 
-const DSPEC_PATH = '/assets/zdata/defaultSpec'
-const DSPEC_VERSION = 4;
+const DSPEC_PATH = '/assets/zdata/defaultSpec4';
+const SPEC_PATH = '/trial'+TEST_VERSION+'/data/spec';
+const SERVERDATA_PATH = '/trial'+TEST_VERSION+'/data/serverData';
 
 const USE_LOCAL_STORAGE = true; // true | false //localStorage is cleared when false!!!!!
 const USE_MAX_PLAYER_NUM = false; // true | false
 
 const TIMIT_SHOW = false; // true | false
 const VERBOSE = true; // true | false
-const SHOW_SERVER_ROUTE = true; // true | false
-const SHOW_SERVER_RETURN = true; // true | false
+const SHOW_SERVER_ROUTE = false; // true | false
+const SHOW_SERVER_RETURN = false; // true | false
 const SHOW_CODE = false; // true | false
-const SHOW_SERVERDATA = true; // true | false
+const SHOW_SERVERDATA = false; // true | false
 const SHOW_SPEC = true; // true | false
 
 

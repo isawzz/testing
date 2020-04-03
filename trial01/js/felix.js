@@ -2,6 +2,26 @@ var PROTO = {};
 var POOLS = {};
 var UI = {}; //dict of rsg uis
 
+function createViewer(areaName){
+	let viewerArea='tabs';
+	let d=mBy(viewerArea);
+	clearElement(d);
+	mFlexWrap(d);
+	mFlexCenterContent(d);
+	return d;
+}
+function createView(dViewer,rootName){
+	//let viewer=mBy(viewerName);
+	let d = mDiv(dViewer);
+	mStyle(d,{margin:10});
+	mColor(d,'white','black')
+	let title=mDiv(d);
+	title.innerHTML=rootName;
+	let body=mDiv(d);
+	body.id=rootName;
+	mMinSize(body,4,3,'cm');
+	return body;
+}
 function parseSpecBranch(areaName, spec, keys) {
 	trace(areaName, keys);
 
@@ -122,7 +142,7 @@ function parseDynamicSpec(ggg) {
 		oEinhaengen[propName].push(info);
 
 		// console.log(oid,info);
-
+		continue;
 		//populate: TODO: just first one for now!!!
 		for (const k in info) {
 

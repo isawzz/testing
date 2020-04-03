@@ -1,7 +1,6 @@
 const SET_RANDOM_COLORS = true; // true | false
-const SET_AREA_IDS =true; // true | false
-
-
+const SHOW_AREA_IDS = false; // true | false
+const SET_STANDARD_SIZE = false;// true | false
 
 const RSGTYPES = { board: 1, hand: 2, field: 101, edge: 102, corner: 103 };//unter 100:container types
 
@@ -10,7 +9,8 @@ const CARD_SZ = 80;
 const LABEL_SZ = 40;
 const FIELD_SZ = 40;
 const DEF_ORIENTATION = 'h';
-const DEF_SPLIT = 0.5;
+const DEF_SPLIT = 'equal';
+const STANDARD_SIZE = [60, 20, 'mm'];
 
 //default rsg types:
 var DEF_LIST_TYPE = 'dom';
@@ -32,10 +32,10 @@ function defaultUIFunc(mk) {
 	el.style.textAlign = 'left';
 	// el.style.whiteSpace = 'nowrap';
 }
-function formatJson(o){
-	let s='';
-	for(const k in o){
-		if (isSimple(o[k])) s+=k+':'+o[k]+' ';
+function formatJson(o) {
+	let s = '';
+	for (const k in o) {
+		if (isSimple(o[k])) s += k + ':' + o[k] + ' ';
 	}
 	return s;
 }

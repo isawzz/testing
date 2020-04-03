@@ -32,13 +32,69 @@ staticSpec:
             id: info_loc
 
   root00:
+    #type: panel
+    id: market_loc
+    params:
+      size: 
+        w: 4
+        h: 3
+        unit: 'cm'
+      color: dimgray
+
+  root01:
+    params:
+      orientation: v
+    panels:
+      - id: hallo
+      - id: wiebitte
+
+  root02:
+    params:
+      orientation: h
+      split: equal
+    panels:
+      - id: A
+      - id: B
+      - id: C
+
+  root03:
+    params:
+      orientation: v
+      split: equal
+    panels:
+      - id: A
+      - id: B
+        panels:
+          - id: C
+          - id: D
+      - id: E
+
+  root04:
     type: panel
     params:
       orientation: h
       split: 0.6
     panels:
-      - id: market_loc
-      - id: me_loc
+      - type: panel
+        params:
+          orientation: v
+          split: 0.5
+        panels:
+          - id: A
+          - id: B
+      - type: panel
+        id: C
+
+  root05:  #minimized root04
+    params:
+      split: 0.6
+    panels:
+      - params:
+          orientation: v
+        panels:
+          - id: A
+          - id: B
+      - id: C
 
   root:
     type: panel

@@ -6,6 +6,7 @@
 	--bgWinner: null;
 }
 html,body{
+	background: lightpink;
 	font: 400 13.3333px Arial;
 	padding:0;
 	margin:0;
@@ -26,10 +27,6 @@ div{
 }
 #middle{
 	flex: 1;
-}
-#table{
-	min-width:300px;
-	min-height:200px;
 }
 #rsg>div, #pageHeader, #test>div, #test3>div, #test2>div{
 	border-radius: 8px;

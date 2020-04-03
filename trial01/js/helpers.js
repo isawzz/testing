@@ -13,8 +13,26 @@ function mDiv100(dParent = null) { let d = mDiv(dParent); mSize(d, 100, 100, '%'
 function mDivPosAbs(x = 0, y = 0, dParent = null) { let d = mCreate('div'); if (dParent) mAppend(dParent, d); mPos(d, x, y); return d; }
 function mDivPosRel(x = 0, y = 0, dParent = null) { let d = mCreate('div'); if (dParent) mAppend(dParent, d); mPosRel(d, x, y); return d; }
 function mFg(d, color) { d.style.color = color; }
-function mFlex(d) { d.style.display = 'flex'; d.style.flexWrap = 'wrap'; }
-function mFlex1(d) { d.style.display = 'flex'; d.style.flexWrap = 'wrap'; d.style.flex = 1; }
+function mFlexCenterContent(d){mStyle(d,{'justify-content':'center','align-items':'center'});}
+function mFlex(d, or = 'h') {
+	d.style.display = 'flex';
+	d.style.flexFlow = (or == 'v' ? 'column' : 'row') + ' ' + (or == 'w' ? 'wrap' : 'nowrap');
+	// d.style.alignItems = 'stretch';
+	// d.style.alignContent = 'stretch';
+	// d.style.justiifyItems = 'stretch';
+	// d.style.justifyContent = 'stretch';
+}
+function mFlexChild(d, grow = 1, shrink = 0, base = 'auto') {
+	// d.style.flexGrow=1;
+	// d.style.flexBase='50%';
+	d.style.flex = '' + grow + ' ' + shrink + ' ' + base;
+}
+function mFlexChildSplit(d, split) {
+	if (split != 1) { split *= 10; if (split % 2 == 0) split /= 2; }
+	d.style.flex = '' + split + ' 0 auto';
+}
+function mFlexWrap(d) { d.style.display = 'flex'; d.style.flexWrap = 'wrap'; }
+function mFlexWrapGrow(d) { d.style.display = 'flex'; d.style.flexWrap = 'wrap'; d.style.flex = 1; }
 function mLabel(label) {
 	//choice a) fontsize nach length berechnen
 	//b) 
@@ -1748,7 +1766,7 @@ function getUID(pref = '') {
 
 //#region io
 var isTraceOn = true; // true | false
-function trace(){if (isTraceOn) console.log('___ ',getFunctionsNameThatCalledThisFunction(),...arguments);}
+function trace() { if (isTraceOn) console.log('___ ', getFunctionsNameThatCalledThisFunction(), ...arguments); }
 
 function consExpand(o, keys, indent = 0) {
 	console.log('.'.repeat(indent), o);

@@ -16,11 +16,12 @@ const USE_MAX_PLAYER_NUM = false; // true | false
 
 const TIMIT_SHOW = false; // true | false
 const VERBOSE = true; // true | false
+const SHOW_TRACE = false; // true | false
 const SHOW_SERVER_ROUTE = false; // true | false
 const SHOW_SERVER_RETURN = false; // true | false
 const SHOW_CODE = false; // true | false
 const SHOW_SERVERDATA = false; // true | false
-const SHOW_SPEC = true; // true | false
+const SHOW_SPEC = false; // true | false
 
 // testing vars
 var timit;

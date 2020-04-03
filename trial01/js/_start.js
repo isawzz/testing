@@ -1,5 +1,5 @@
 window.onload = () => _start();
-var timit,G;
+var timit, G;
 
 async function _start() {
 	timit = new TimeIt('*timer', TIMIT_SHOW);
@@ -10,8 +10,23 @@ async function _start() {
 	await loadInitialServerData();
 
 	d3.select('#bNextMove').text('NEXT MOVE').on('click', interaction);
+	if (!SHOW_SERVERDATA) hide('SERVERDATA');
+	if (!SHOW_SPEC) hide('SPEC');
+	//mMinSize(mBy('table'),300,200);
 	gameStep();
 	//interaction(); //to test 2nd step
+}
+function showViewer() {
+	let viewer = createViewer('tabs');
+	// console.log(viewer)
+	let G = {};
+	let numViews = 6;
+	for (let n = 0; n < numViews; n++) {
+		let rootName = 'root0' + n;
+		let vName = createView(viewer, rootName);
+		G[rootName] = parseSpecBranch(rootName, SPEC, ['staticSpec', rootName]);
+		//console.log('root0' + n, G,'\n ');
+	}
 }
 async function gameStep() {
 	//#region prelims
@@ -30,19 +45,18 @@ async function gameStep() {
 
 	//#endregion
 
-	isTraceOn=true;
-	let g1=G= parseSpecBranch('table',SPEC,['staticSpec','root00']);
-	console.log(G)
+	isTraceOn = SHOW_TRACE;
+	showViewer();
 
-	//testLayout01();
+	// testLayout01();
 	//return;
 
 	//hide('test1'); hide('test2'); hide('test3');
 
 	//console.log(sData);
-	//let G0 = createRoot('table', SPEC);
-	//parseStaticSpec(G0);
-	//parseDynamicSpec(G0);
+	let G0 = createRoot('table', SPEC);
+	parseStaticSpec(G0);
+	parseDynamicSpec(G0);
 
 	// let G2 = createRoot('table2',jsCopy(SPEC));
 	// parseStaticSpec(G2);

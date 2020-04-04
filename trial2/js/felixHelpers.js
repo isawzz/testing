@@ -1,4 +1,5 @@
 
+
 //#region static helpers
 function getDynId(loc, oid) { return loc + '@' + oid; }
 function getObject(oid) { return POOLS.augData[oid]; }
@@ -17,35 +18,6 @@ function qualId(ggg, id) { return id + '_' + ggg.id; }
 
 
 //#region misc helpers: parse dynamic spec
-function getParams(ggg, areaName, oSpec, oid) {
-
-	let params = oSpec.params ? oSpec.params : {}; //all defaults here!!!!!
-	let panels = oSpec.panels ? oSpec.panels : [];
-
-	let num = panels.length;
-	let or = params.orientation ? params.orientation : DEF_ORIENTATION;
-	let split = params.split ? params.split : DEF_SPLIT;
-	let bg = oSpec.color ? oSpec.color : randomColor();
-	let fg = bg ? colorIdealText(bg) : null;
-	let id = oSpec.id ? oSpec.id : areaName;
-	if (oid) { id = getDynId(id, oid); }
-	//id=qualId(ggg,id);
-	//console.log(areaName);
-	//let parent = mBy(areaName);
-	let parent = halloFindDiv(ggg, areaName);
-	//console.log('panel 91.....', areaName, parent.id)
-
-	if (oSpec.id) {
-		parent.id = qualId(ggg, id);
-		//console.log('adding',id)
-		addIdToAreaDict(ggg, id, oSpec);
-		// if (oSpec.id && oid) addDynamicName(oSpec.id,id);
-		parent.innerHTML = id;  //title for test reasons!
-	}
-	if (bg) { mColor(parent, bg, fg); }
-
-	return [num, or, split, bg, fg, id, panels, parent];
-}
 function correctFuncName(specType) {
 	switch (specType) {
 		case 'list': specType = 'liste'; break;
@@ -62,42 +34,6 @@ function addIdToAreaDict(ggg, id, o) {
 		return;
 	}
 	ggg.areas[id] = o;
-}
-function annotate(sp) {
-	//test	let x=makePool(sp.all_viz_cards);	return;
-
-	for (const k in sp) {
-		//console.log(k, sp[k]);
-
-		let node = sp[k];
-		node.pool = [];
-
-		//determine source here!
-		let pool = makePool(node);
-
-		for (const oid in pool) {
-
-			let o = pool[oid];
-
-			if (!evalCond(o, node)) continue;
-
-			//console.log('passed', oid);
-			//mach ein p_elm
-			if (nundef(o.RSG)) o.RSG = {};
-			let rsg = o.RSG;
-			rsg[k] = true;
-			node.pool.push(oid);
-			//let rsg = o.RSG;
-			//let newRSG = deepmerge(rsg, node);
-			//o.RSG = newRSG;
-			//if (startsWith(oid,'P')) //console.log('???',o.RSG);
-
-
-		}
-	}
-
-
-
 }
 function mergeIncludingPrototype(sp, oid, o) {
 	let merged = mergeDynSetNodes(sp, o);
@@ -134,36 +70,38 @@ function mergeDynSetNodes(sp, o) {
 	return merged;
 }
 function prepParentForChildren(ggg, loc, numChildren) {
-
-	let parent = halloFindDiv(ggg, loc);//areaName);
+	//eg., parent: all_opps
+	let parent = halloFindDiv(ggg, loc);
 	//console.log('aaaaa ', loc, parent.id)
-	// let parent = mBy(loc);
+
+	//how to hold size of this element?
+	//mMinBounds(parent);
 	clearElement(parent);
-	parent.style.display = 'inline-grid';
+	//parent.innerHTML='wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww'
+
+	//parent.style.display = 'inline-grid';
+
 	let uiNode = ggg.areas[loc];
-	if (!uiNode.type) uiNode.type = 'panel';
+
+	if (nundef(uiNode.ui) || uiNode.ui != parent) error('HALLOOOOOOOO');
+	//console.log(uiNode.id,uiNode.type,uiNode.params);
+	// if (!uiNode.type) uiNode.type = 'panel';
 	if (!uiNode.params) uiNode.params = { split: 'equal' };
 	uiNode.params.num = numChildren;
 
 	if (!uiNode.panels) uiNode.panels = [];
 }
-function addPanel(ggg, areaName, oid) {
-	//mach so einen spec node
-	let id = getDynId(areaName, oid);
 
-	let color = randomColor();
-	let parent = halloFindDiv(ggg, areaName); // mBy(areaName);
-	//console.log('addP - - - ',areaName,parent.id)
-
+function addPanelForOid(ggg, areaName, oid) {
+	//mach so einen spec node und base panel fuer oid
+	let parent = halloFindDiv(ggg, areaName); 
 	let ui = mDiv100(parent);
-	ui.id = qualId(ggg, id);
-	mColor(ui, color);
+	let color = randomColor();mColor(ui, color);
 
-	let n = { type: 'panel', id: id, color: color, ui: ui };
+	let oSpec = { type: 'panel', id: areaName, color: color, ui: ui };
+	let id = setId(ggg, ui, oSpec, oid);
+	ggg.areas[areaName].panels.push(oSpec);
 
-	ggg.areas[areaName].panels.push(n);
-
-	addIdToAreaDict(ggg, id, n);
 }
 function makeDefaultPool(fromData) {
 	let data = jsCopy(fromData.table);

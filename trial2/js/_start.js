@@ -9,24 +9,12 @@ async function _start() {
 	//await loadCode();
 	await loadInitialServerData();
 
+	//prep ui
 	d3.select('#bNextMove').text('NEXT MOVE').on('click', interaction);
 	if (!SHOW_SERVERDATA) hide('SERVERDATA');
 	if (!SHOW_SPEC) hide('SPEC');
 	//mMinSize(mBy('table'),300,200);
 	gameStep();
-	//interaction(); //to test 2nd step
-}
-function showViewer() {
-	let viewer = createViewer('tabs');
-	// console.log(viewer)
-	let G = {};
-	let numViews = 6;
-	for (let n = 0; n < numViews; n++) {
-		let rootName = 'root0' + n;
-		let vName = createView(viewer, rootName);
-		G[rootName] = parseSpecBranch(rootName, SPEC, ['staticSpec', rootName]);
-		//console.log('root0' + n, G,'\n ');
-	}
 }
 async function gameStep() {
 	//#region prelims
@@ -42,22 +30,23 @@ async function gameStep() {
 	// TODO: here I could insert computing diffed serverData
 
 	sData = serverData; //these are the data that I actually want to present!
+	isTraceOn = SHOW_TRACE;
+	G = {};
 
 	//#endregion
 
-	isTraceOn = SHOW_TRACE;
-	showViewer();
+	test00();
+	//showViewer(1);
 
-	// testLayout01();
-	//return;
-
+	// testLayout01(); return;
 	//hide('test1'); hide('test2'); hide('test3');
 
 	//console.log(sData);
-	let G0 = createRoot('table', SPEC);
-	parseStaticSpec(G0);
-	parseDynamicSpec(G0);
+	//let g0 = G.table = createRoot('table', SPEC); //ok
+	//parseStaticSpec(g0);
+	//parseDynamicSpec(g0);
 
+	//console.log(g0.areas)
 	// let G2 = createRoot('table2',jsCopy(SPEC));
 	// parseStaticSpec(G2);
 	// parseDynamicSpec(G2);
@@ -82,21 +71,18 @@ async function gameStep() {
 	//console.log('__________________')
 }
 
-function testLayout01() { let d = mBy('table'); mColor(d, 'blue'); }
 
 
 
 
-//#region rest
-function onClickSizeBig() { let d = mBy('table'); mSize(d, 700, 500); mColor(d, 'blue'); }
-function onClickSizeSmall() { let d = mBy('table'); mSize(d, 400, 300); mColor(d, 'blue'); }
+//#region interaction restart
+async function interaction() {
+	await sendAction();
+	gameStep();
+}
 async function restartGame() {
 	await sendRestart();
 	d3.select('button').text('NEXT MOVE').on('click', interaction);
-	gameStep();
-}
-async function interaction() {
-	await sendAction();
 	gameStep();
 }
 

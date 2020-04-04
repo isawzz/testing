@@ -32,7 +32,6 @@ staticSpec:
             id: info_loc
 
   root00:
-    #type: panel
     id: market_loc
     params:
       size: 
@@ -40,6 +39,13 @@ staticSpec:
         h: 3
         unit: 'cm'
       color: dimgray
+
+  rootloc:
+    #type: panel
+    loc: market_loc
+    panels:
+      - id: hallo
+      - id: wiebitte
 
   root01:
     params:
@@ -103,6 +109,7 @@ staticSpec:
       split: 0.6
     panels:
       - type: panel
+        id: hallo
         params:
           orientation: v
           split: 0.5
@@ -195,20 +202,21 @@ dynamicSpec:
       bg:
         image: card_bg.jpg # some texture file
 
-  bld_info:
-    cond:
-      instanceof: building # any sub game object of building
+  # bld_info:
+  #   cond:
+  #     instanceof: building # any sub game object of building
 
-    type: panel
+  #   type: panel
 
-    params:
-      orientation: h
-      split: 0.4
+  #   params:
+  #     orientation: h
+  #     split: 0.4
 
-    panels:
-      - type: info
-        data: # info data can also be specified as a list of "key,value" pairs if the keys also have to be computed/dynamic
-          - key: .obj_type
-            value: .address
-      - type: list
-        elm: .storage
+  #   panels:
+  #     - type: info
+  #       data: # info data can also be specified as a list of "key,value" pairs 
+  #       #if the keys also have to be computed/dynamic
+  #         - key: .obj_type
+  #           value: .address
+  #     - type: list
+  #       elm: .storage

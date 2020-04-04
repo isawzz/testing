@@ -20,7 +20,9 @@ players:
     buildings:
       palace: []
       estate: []
-      farm: []
+      farm:
+      - _obj: farm1
+      - _obj: farm2
   Player2:
     name: Player2
     hand:
@@ -33,22 +35,24 @@ players:
       - _obj: 1-9bcda723
       - _obj: 1-d5753cc8
     obj_type: opponent
-  Player3:
-    name: Player3
-    hand:
-      _set:
-      - _obj: 1-fe0c8d2d
-      - _obj: 1-98382471
-      - _obj: 1-a222ce72
-      - _obj: 1-33bf5bf0
-      - _obj: 1-306df326
-      - _obj: 1-c1b4700
-      - _obj: 1-402528cf
-    buildings:
-      palace: []
-      estate: []
-      farm: []
-    obj_type: opponent
+  # Player3:
+  #   name: Player3
+  #   hand:
+  #     _set:
+  #     - _obj: 1-fe0c8d2d
+  #     - _obj: 1-98382471
+  #     - _obj: 1-a222ce72
+  #     - _obj: 1-33bf5bf0
+  #     - _obj: 1-306df326
+  #     - _obj: 1-c1b4700
+  #     - _obj: 1-402528cf
+  #   buildings:
+  #     palace: 
+  #     - _obj: palace1
+  #     - _obj: palace2
+  #     estate: []
+  #     farm: []
+  #   obj_type: opponent
   # Player4:
   #   name: Player4
   #   obj_type: opponent
@@ -56,6 +60,41 @@ players:
   #   name: Player5
   #   obj_type: opponent
 table:
+  market1:
+    obj_type: market
+    neutral:
+      _set:
+      - _obj: 1-a5560563
+      - _obj: 1-6ae87e1a
+    address: 0
+  palace1:
+    obj_type: palace
+    storage:
+      _set:
+      - _obj: 1-a5560563
+      - _obj: 1-6ae87e1a
+    address: 0
+  palace2:
+    obj_type: palace
+    storage:
+      _set:
+      - _obj: 1-a5560563
+      - _obj: 1-6ae87e1a
+    address: 0
+  farm1:
+    obj_type: farm
+    storage:
+      _set:
+      - _obj: 1-a5560563
+      - _obj: 1-6ae87e1a
+    address: 0
+  farm2:
+    obj_type: farm
+    storage:
+      _set:
+      - _obj: 1-64b019b9
+      - _obj: 1-731f9025
+    address: 0
   1-398593ec:
     short_name: K
     value: 10

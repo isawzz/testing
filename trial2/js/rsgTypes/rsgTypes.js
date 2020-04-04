@@ -1,5 +1,5 @@
 const SET_RANDOM_COLORS = true; // true | false
-const SHOW_AREA_IDS = false; // true | false
+const SHOW_AREA_IDS = true; // true | false
 const SET_STANDARD_SIZE = false;// true | false
 
 const RSGTYPES = { board: 1, hand: 2, field: 101, edge: 102, corner: 103 };//unter 100:container types

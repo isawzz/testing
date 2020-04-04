@@ -14,9 +14,10 @@ const SERVERDATA_PATH = '/trial'+TEST_VERSION+'/data/serverData';
 const USE_LOCAL_STORAGE = true; // true | false //localStorage is cleared when false!!!!!
 const USE_MAX_PLAYER_NUM = false; // true | false
 
+const SHOW_TRACE = false; // true | false
+
 const TIMIT_SHOW = false; // true | false
 const VERBOSE = true; // true | false
-const SHOW_TRACE = false; // true | false
 const SHOW_SERVER_ROUTE = false; // true | false
 const SHOW_SERVER_RETURN = false; // true | false
 const SHOW_CODE = false; // true | false

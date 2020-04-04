@@ -13,7 +13,7 @@ function mDiv100(dParent = null) { let d = mDiv(dParent); mSize(d, 100, 100, '%'
 function mDivPosAbs(x = 0, y = 0, dParent = null) { let d = mCreate('div'); if (dParent) mAppend(dParent, d); mPos(d, x, y); return d; }
 function mDivPosRel(x = 0, y = 0, dParent = null) { let d = mCreate('div'); if (dParent) mAppend(dParent, d); mPosRel(d, x, y); return d; }
 function mFg(d, color) { d.style.color = color; }
-function mFlexCenterContent(d){mStyle(d,{'justify-content':'center','align-items':'center'});}
+function mFlexCenterContent(d) { mStyle(d, { 'justify-content': 'center', 'align-items': 'center' }); }
 function mFlex(d, or = 'h') {
 	d.style.display = 'flex';
 	d.style.flexFlow = (or == 'v' ? 'column' : 'row') + ' ' + (or == 'w' ? 'wrap' : 'nowrap');
@@ -29,7 +29,10 @@ function mFlexChild(d, grow = 1, shrink = 0, base = 'auto') {
 }
 function mFlexChildSplit(d, split) {
 	if (split != 1) { split *= 10; if (split % 2 == 0) split /= 2; }
-	d.style.flex = '' + split + ' 0 auto';
+	d.style.flex = '' + split + ' 0 auto'; //NO
+	//trace(split)
+	// d.style.flex = '1 0 auto'; //NO
+	// d.style.flex = '1 0 ' + (split * 100) + '%';
 }
 function mFlexWrap(d) { d.style.display = 'flex'; d.style.flexWrap = 'wrap'; }
 function mFlexWrapGrow(d) { d.style.display = 'flex'; d.style.flexWrap = 'wrap'; d.style.flex = 1; }
@@ -58,6 +61,10 @@ function mPosRel(d, x, y, unit) { d.style.position = 'relative'; if (isdef(x)) m
 function mRot(d, angle) { d.style.transform = 'rotate(' + angle + 'deg)'; }
 function mSize(d, w, h, unit = 'px') { mStyle(d, { width: w, height: h }, unit); }
 function mMinSize(d, w, h, unit = 'px') { mStyle(d, { 'min-width': w, 'min-height': h }, unit); }
+function mMinBounds(d) {
+	let b = getBounds(d);
+	mStyle(d, { 'min-width': b.width, 'min-height': b.height }, 'px');
+}
 function mSizePic(d, w, h = 0, unit = 'px') { return mStyle(d, { 'font-size': h / 2, 'font-weight': 900, 'padding-top': h / 4, 'text-align': 'center', 'box-sizing': 'border-box', width: w, height: h ? h : w }, unit); }
 function mStyle(elem, styles, unit = 'px') { for (const k in styles) { elem.style.setProperty(k, makeUnitString(styles[k], unit)); } }
 function mTextDiv(text, dParent = null) { let d = mCreate('div'); d.innerHTML = text; return d; }

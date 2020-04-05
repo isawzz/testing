@@ -1,0 +1,27 @@
+# 00 ttt alternative
+init:
+
+  root:
+    id: board
+    cond: # must be singleton object!
+      obj_type: board
+    type: wrap_panel
+    params:
+      cols: .cols
+      size: 
+        w: 4
+        h: 3
+        unit: 'cm'
+      color: dimgray
+  tick_loc: #only executed initially
+    loc: board
+    cond: 
+      obj_type: tick
+    type: info
+
+always:
+  tick_content: #executed always
+    cond: 
+      obj_type: tick
+    type: info
+

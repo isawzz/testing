@@ -1,0 +1,17 @@
+init:
+  ROOT:
+    id: A
+    panels:
+      _id: A
+    params:
+      size: 
+        w: 4
+        h: 3
+        unit: 'cm'
+      color: dimgray
+
+  rootloc:
+    _ref: A
+    panels:
+      - id: B
+      - id: C

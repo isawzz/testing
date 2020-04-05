@@ -30,6 +30,26 @@ function createView(dViewer, rootName) {
 	return body;
 }
 
+function parseSpecRoot(areaName, spec, keys) {
+	trace(areaName, keys);
+
+	let gg = {};
+	let eigeneSpec = gg.root = jsCopy(lookup(spec, keys)); //copy of branch spec
+	gg.spec = spec;
+	gg.keys = keys;
+	gg.id = areaName;
+	gg.info = {};
+	gg.areas = {};
+
+	staticArea(gg, areaName, eigeneSpec);
+	addIdToAreaDict(gg, 'root', eigeneSpec);
+
+	UI[areaName] = gg; //global root dict
+
+	return gg;
+}
+
+
 
 
 

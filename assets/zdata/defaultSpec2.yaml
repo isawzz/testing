@@ -13,7 +13,7 @@ layout_alias:
   p: player
   o: others
 
-#global: # global settings for UI
+#global: # global settings for user_interface
 #default_loc: "none" # hide any game objects not explicitly placed => same as table.createDefault and player.createDefault
 #visualize: "default" #dont know exactly what that means
 useLocPropertyForPlacement: true # if a game object has a "loc" property, and if that loc is an element of a grid, then autmatically place the object 

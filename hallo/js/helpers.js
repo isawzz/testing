@@ -70,7 +70,7 @@ function mStyle(elem, styles, unit = 'px') { for (const k in styles) { elem.styl
 function mTextDiv(text, dParent = null) { let d = mCreate('div'); d.innerHTML = text; return d; }
 //#endregion
 
-//#region SVG 1 liners A list shapes G
+//#region SVG/g 1 liners A list shapes
 function gCreate(tag) { return document.createElementNS('http://www.w3.org/2000/svg', tag); }
 function gPos(g, x, y) { g.style.transform = `translate(${x}px, ${y}px)`; }
 function gBg(g, color) { g.setAttribute('fill', color); }

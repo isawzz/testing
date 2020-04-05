@@ -1,22 +1,4 @@
-function parseSpecRoot(areaName, spec, keys) {
-	trace(areaName, keys);
-
-	let gg = {};
-	let eigeneSpec = gg.root = jsCopy(lookup(spec, keys)); //copy of branch spec
-	gg.spec = spec;
-	gg.keys = keys;
-	gg.id = areaName;
-	gg.info = {};
-	gg.areas = {};
-
-	staticArea(gg, areaName, eigeneSpec);
-	addIdToAreaDict(gg, 'root', eigeneSpec);
-
-	UI[areaName] = gg; //global root dict
-
-	return gg;
-}
-
+//static
 function createRoot(areaName, spec) {
 	trace(areaName);
 	let d = mBy(areaName); mMinSize(d, 400, 300); mColor(d, 'tomato');
@@ -45,10 +27,11 @@ function parseStaticSpec(ggg) {
 	}
 }
 
+//dynamic
 function parseDynamicSpec(ggg) {
 	let sp = jsCopy(ggg.spec.dynamicSpec);
 
-	let pool = POOLS.augData = makeDefaultPool(sData);
+	let pool = sData;
 
 	//pass 1: annotate evals cond does NOT create anything!
 	pass1_evalCond(sp); //connects nodes to spec and dyn spec nodes to each object

@@ -3,7 +3,6 @@ staticSpec:
   p_elm:
     type: panel
     params:
-      num: 2 # usually optional (inferred by provided "panels")
       orientation: h
       split: 0.6
     panels:
@@ -12,11 +11,11 @@ staticSpec:
           orientation: v
           split: 0.5
         panels:
-          - type: panel
+          - type: list
             params:
               orientation: h
-            id: stand_loc #muss dict sein by oid
-          - type: panel
+            id: stand_loc
+          - type: list
             params:
               orientation: h
             id: bld_loc
@@ -25,11 +24,11 @@ staticSpec:
           orientation: v
           split: 0.5
         panels:
-          - type: panel # player hand/stand
+          - type: list # player hand/stand
             id: hand_loc
             params:
               orientation: h
-          - type: panel # player info
+          - type: dict # player info
             id: info_loc
 
   root:
@@ -39,6 +38,7 @@ staticSpec:
       split: 0.6
     panels:
       - type: panel
+        id: hallo
         params:
           orientation: v
           split: 0.5
@@ -55,9 +55,9 @@ staticSpec:
       orientation: h
       split: 0.5
     panels:
-      - type: panel
+      - type: list
         id: neutral_loc
-      - type: panel
+      - type: list
         params:
           orientation: v
         id: discard_loc
@@ -70,7 +70,7 @@ dynamicSpec:
     cond:
       instanceof: _player # auto-parent of me and opponents
     type: p_elm
-    
+    #id: .name
     panels.0.panels.0.elm: .market # "composite" keys
     panels.0.panels.1.elm: .buildings
     panels.1.panels.0.elm: .hand
@@ -131,20 +131,21 @@ dynamicSpec:
       bg:
         image: card_bg.jpg # some texture file
 
-  bld_info:
-    cond:
-      instanceof: building # any sub game object of building
+  # bld_info:
+  #   cond:
+  #     instanceof: building # any sub game object of building
 
-    type: panel
+  #   type: panel
 
-    params:
-      orientation: h
-      split: 0.4
+  #   params:
+  #     orientation: h
+  #     split: 0.4
 
-    panels:
-      - type: info
-        data: # info data can also be specified as a list of "key,value" pairs if the keys also have to be computed/dynamic
-          - key: .obj_type
-            value: .address
-      - type: panel
-        elm: .storage
+  #   panels:
+  #     - type: info
+  #       data: # info data can also be specified as a list of "key,value" pairs 
+  #       #if the keys also have to be computed/dynamic
+  #         - key: .obj_type
+  #           value: .address
+  #     - type: list
+  #       elm: .storage

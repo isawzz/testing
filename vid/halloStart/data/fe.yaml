@@ -1,0 +1,85 @@
+#falls ja, dann muesste in aristo spec:
+ROOT:
+  meta:
+    type: static #default unless cond
+    root: True # default (because of name "ROOT")
+  type: panel
+  params:
+    orientation: h
+    split: 0.6
+  panels:
+    - type: panel
+      params:
+        orientation: v
+        split: 0.5
+      panels:
+        - _id: market_loc
+          #!!!TYPE UND PARAMS COMING FROM global_market
+          #define either her or there but not both places
+          # type: list # any data here is merged with any object that has "loc: market_loc"
+          # params:
+          #   orientation: h
+        - _id: me_loc
+    - type: panel
+      panels:
+        _id: all_opps
+      params:
+        split: equal
+        panel_type: p_elm
+
+global_market:
+  meta:
+    type: static
+  _ref: market_loc
+  type: panel
+  params:
+    orientation: h
+    split: 0.5
+  panels:
+    - type: list
+      _id: neutral_loc
+    - type: list
+      params:
+        orientation: v
+      _id: discard_loc
+
+
+
+
+
+#ex 1: place B, C into A.panels
+A:
+  params:
+    orientation: h
+    split: 0.5
+  panels:
+    _platzhalter: A
+
+B:
+  _goto: A
+  type: list
+  params:
+    orientation: v
+
+C:
+  _goto: A
+  type: list
+  params:
+    orientation: v
+
+#ex 2: merge A2 and B2:
+A2:
+  _platzhalter: A2
+  params:
+    orientation: h
+    split: 0.5
+
+B2:
+  _goto: A2
+  panels:
+    - type: list
+      _platzhalter: C #da kommt noch was hin
+    - type: list
+      params:
+        orientation: v
+      _platzhalter: D

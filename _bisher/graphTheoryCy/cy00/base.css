@@ -1,0 +1,17 @@
+body { 
+  font: 14px helvetica neue, helvetica, arial, sans-serif;
+}
+
+#cy {
+  width: 600px;
+  height: 600px;
+  display: block;
+	background: skyblue;
+}
+#cy {
+  height: 96%;
+  width: 96%;
+  position: absolute;
+  left: 2%;
+  top: 2%;
+}

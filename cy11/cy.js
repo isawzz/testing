@@ -1,0 +1,14 @@
+class Graph{
+	constructor(){
+		
+	}
+}
+
+
+
+
+
+
+
+
+

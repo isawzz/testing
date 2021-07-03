@@ -1,6 +1,5 @@
-window.onload = start;
+function start_dep() {
 
-function start() {
 	cy = cytoscape({
 		container: document.getElementById('cy'),
 
@@ -9,8 +8,6 @@ function start() {
 			{ data: { id: 'b' }, position: { x: 10, y: 50 } },
 			{ data: { id: 'c' }, position: { x: 10, y: 90 } },
 			{ data: { id: 'd' }, position: { x: 50, y: 50 } },
-			// { data: { id: 'e' } },
-			// { data: { id: 'f' } },
 			{ data: { id: 'ab', source: 'a', target: 'b' } },
 			{ data: { id: 'ac', source: 'a', target: 'c' } },
 			{ data: { id: 'bc', source: 'b', target: 'c' } },
@@ -24,42 +21,14 @@ function start() {
 					'background-color': 'red', //color of node
 					"color": "#fff", //color of text [black]
 					'label': 'data(id)',
-					// 'content': 'data(id)', //same as label?
 					"text-valign": "center", //sonst wird label ober node gemacht
 					"text-halign": "center",
 				}
 			},
-			{
-				selector: 'node.highlight',
-				style: {
-					// 'label': 'data(name)',
-					// 'text-valign': 'center',
-					// 'color': "white",
-					// 'text-outline-color': 'red',
-					// 'text-outline-width': 2,
-					'background-color': 'yellow'
-				}
-			},
-			{
-				selector: 'node.semitransp',
-				style: { 'opacity': '0.5' }
-			},
+			{ selector: 'node.highlight', style: { 'background-color': 'yellow' } },
+			{ selector: 'node.semitransp', style: { 'opacity': '0.5' } },
 			//edge styles
-			{
-				selector: 'edge',
-				style: {
-					'width': 3,
-					'background-color': 'blue',
-					'color': 'white',
-					'line-color': 'blue',
-					'target-arrow-color': 'blue',
-					'target-arrow-shape': 'triangle',
-					'curve-style': 'bezier',
-					'label': 'data(id)',
-					// "text-valign": "top", //geht nicht bei edge!
-					// "text-halign": "center",
-				}
-			},
+			{ selector: 'edge', style: { 'width': 2, 'line-color': 'blue', 'curve-style': 'bezier', } },
 		],
 
 		maxZoom: 1,
@@ -70,17 +39,14 @@ function start() {
 		userZoomingEnabled: true,
 		panningEnabled: true,
 		userPanningEnabled: true,
-		layout: {
-			name: 'preset',
-		}
+		layout: { name: 'preset' }
 	});
-	//cy.boxSelectionEnabled(true);
-	//selectedNodes = cy.collection();
 
 	cy.ready(activateEvents);
 }
 function activateEvents() {
-	
+	//hier will ich es systematischer!
+
 
 	cy.on('click', 'node', ev => {
 		console.log('click node');

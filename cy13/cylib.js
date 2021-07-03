@@ -1,6 +1,6 @@
 var cy, Result;
-const NodeNames = 'abcdefghijklmnopqrstuvwxyz';
-const SelectedNodes = [];
+// const NodeNames = 'abcdefghijklmnopqrstuvwxyz';
+// const SelectedNodes = [];
 
 function addNode(data, coords) {
 	if (nundef(data.id)) data.id = getNodeName();
@@ -26,13 +26,6 @@ function addEdge(nid1, nid2, data) {
 
 function getNodeCount() { return cy.nodes().length; }
 function getNodeIds() { return cy.nodes().map(x => x.id()); }
-function getNodeName() {
-	let ids = getNodeIds();
-	let letters = lettersToArray(NodeNames);
-	let newName = firstCond(letters, x => !ids.includes(x));
-	console.log('next node name is', newName);
-	return newName;
-}
 
 function toggleSelection(ele) { if (ele.data().selected) unselectNode(ele); else selectNode(ele); }
 function selectNode(ele) { ele.addClass('highlight'); addIf(SelectedNodes, ele.id()); ele.data().selected = true; }

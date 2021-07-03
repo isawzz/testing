@@ -15,17 +15,23 @@
 	</head>
 	<body>
 		<dButtons style='border-radius:10px;background:grey;color:white;padding:10px;display:flex;flex-wrap:wrap'> <!-- position:fixed; -->
-			<span style='padding:2px'>Shift+click to add a node</span>
-			<button onclick='layoutCose()'>cose</button>
-			<button onclick='cy.center()'>center</button>
-			<button onclick='cy.fit()'>fit</button>
-			<button onclick='testOutputCollections()'>output</button>
+			<!-- <span style='padding:2px'>Shift+click to add a node</span> -->
+			<!-- <button onclick='layoutCose()'>cose</button> -->
+			<button onclick='onClickReset()'>reset</button>
+			<button onclick='onClickCose()'>cose</button>
+			<!-- <button onclick='cy.center()'>center</button> -->
+			<!-- <button onclick='cy.fit()'>fit</button> -->
+			<!-- <button onclick='onClickToggleZoom()'>toggle zoom</button> -->
+			<!-- <button onclick='onClickTogglePan()'>toggle pan</button> -->
+			<!-- <button onclick='testOutputCollections()'>output</button> -->
 		</dButtons>
-		<div id="cy"></div>
+		<div id="dBlue"></div>
+		<div id="dPink"></div>
 
 		<script src='./cylayout.js'></script>
 		<script src='./cy.js'></script>
 		<script src='./cylib.js'></script>
+		<script src='./mGraph.js'></script>
 		<script src='./test.js'></script>
 		<script src='./start.js'></script>
 	</body>

@@ -3881,6 +3881,8 @@ function substringOfMinLength(s, minStartIndex, minLength) {
 	while (res1.trim().length < minLength && i < res.length) { res1 += res[i]; i += 1; }
 	return res1.trim();
 }
+function lettersToArray(s){return toLetterList(s);}
+function toLetterArray(s){return toLetterList(s);}
 function toLetterList(s) {
 	return [...s];
 }

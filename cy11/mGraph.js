@@ -1,3 +1,115 @@
+
+function cyGraph(dParent, styleDict = {}, els = []) {
+	let options = {};
+	if (isdef(dParent)) options.container = dParent;
+
+	//#region extend styleDict based on defStyleDict
+	let defStyleDict = {
+		node: { 'background-color': 'red', "color": "#fff", 'label': 'data(id)', "text-valign": "center", "text-halign": "center", },
+		edge: { 'width': 2, 'line-color': 'blue', 'curve-style': 'bezier', },
+		'node.highlight': { 'background-color': 'yellow' },
+		'node.semitransp': { 'opacity': '0.5' },
+	}
+	for (const k in styleDict) {
+		if (isdef(defStyleDict)) addKeys(defStyleDict[k], styleDict[k]);
+	}
+	addKeys(defStyleDict, styleDict);
+	//#endregion
+
+	let style = [];
+	for (const k in styleDict) { style.push({ selector: k, style: styleDict[k] }); }
+	options.style = style;
+
+	options.elements = els;
+
+	let defOptions = {
+		maxZoom: 1,
+		minZoom: .2,
+		motionBlur: true,
+		wheelSensitivity: 0.05,
+		zoomingEnabled: true,
+		userZoomingEnabled: true,
+		panningEnabled: true,
+		userPanningEnabled: true,
+		boxSelectionEnabled: false,
+		layout: { name: 'preset' }
+
+	};
+	addKeys(defOptions, options);
+	cy = cytoscape(options);
+}
+function cyRemoveClickHandler() { cy.unbind('click'); }
+function cyClickEdgeNode(nodeHandler, edgeHandler) {
+	cy.unbind('click');
+	cy.bind('click', 'node,edge', ev => { if (ev.target.isEdge()) edgeHandler(ev.target.id()); else nodeHandler(ev.target.id()) });
+}
+function cyClickEdge(handler) {
+	cy.unbind('click');
+	cy.bind('click', 'edge', ev => handler(ev.target.id()));
+}
+function cyClickNode(handler) {
+	cy.unbind('click');
+	cy.bind('click', 'node', ev => handler(ev.target.id()));
+}
+function cyPanOn() {
+	cy.panningEnabled(true);
+	cy.userPanningEnabled(true);
+}
+function cyPanOff(reset = true) {
+	if (reset) { cyResetPan(); cy.center(); }
+	cy.panningEnabled(false);
+	cy.userPanningEnabled(false);
+}
+function cyPanToggle(reset = true) { if (cy.panningEnabled()) cyPanOff(); else cyPanOn(); }
+function cyReset() { cyCenterFitReset(); }
+function cyCenterFitReset() { cyResetPan(); cyResetZoom(); cy.fit(); cy.center(); }
+function cyResetPan() { cy.pan({ x: 0, y: 0 }); }
+function cyResetZoom() { cy.zoom(1); }
+function cyZoomOn(minZoom, maxZoom = 1) {
+	cy.zoomingEnabled(true);
+	cy.userZoomingEnabled(true);
+	cy.minZoom(minZoom);
+	cy.maxZoom(maxZoom);
+}
+function cyZoomOff(reset = true) {
+	if (reset) { cyResetZoom(); cy.fit(); }
+	cy.zoomingEnabled(false);
+	cy.userZoomingEnabled(false);
+}
+function cyZoomToggle(reset = true) { if (cy.zoomingEnabled()) cyZoomOff(); else cyZoomOn(); }
+
+function addEdge(nid1, nid2) {
+}
+function removeNode(id) { var j = cy.$('#' + id); cy.remove(j); }
+function removeNodes(idlist) {
+	var collection = cy.elements('node[weight > 50]');
+	cy.remove(collection);
+
+	cy.remove('node[weight > 50]'); // remove nodes with weight greater than 50
+}
+function addNodes(o) {
+	var eles = cy.add([
+		{ group: 'nodes', data: { id: 'n0' }, position: { x: 100, y: 100 } },
+		{ group: 'nodes', data: { id: 'n1' }, position: { x: 200, y: 200 } },
+		{ group: 'edges', data: { id: 'e0', source: 'n0', target: 'n1' } }
+	]);
+}
+function getNode(id) {
+	return cy.getElementById(id);
+	return cy.$id(id);
+}
+function getNodes(func) {
+	let collection = cy.filter((ele, i, eles) => func(ele));
+	//console.log(collection);
+	return collection;
+}
+function getPosRelTo(elem, pos) {
+	let rect = getRect(elem);
+	pos.x -= rect.x;
+	pos.y -= rect.y;
+	return pos;
+}
+
 var selectedNodes;
 
 function onNodeClickToggleSelection(){
@@ -103,42 +215,42 @@ function reklayout(){
 	cy.layout(options).run();
 
 }
-function addEdge(nid1, nid2) {
+
+//#region muell
+function hallo() {
+	let o = {
+		container: document.getElementById('cy'),
+
+		elements: [],
+
+		style: [
+			//node styles
+			{
+				selector: 'node',
+				style: {
+					'background-color': 'red', //color of node
+					"color": "#fff", //color of text [black]
+					'label': 'data(id)',
+					"text-valign": "center", //sonst wird label ober node gemacht
+					"text-halign": "center",
+				}
+			},
+			{ selector: 'node.highlight', style: { 'background-color': 'yellow' } },
+			{ selector: 'node.semitransp', style: { 'opacity': '0.5' } },
+			//edge styles
+			{ selector: 'edge', style: { 'width': 2, 'line-color': 'blue', 'curve-style': 'bezier', } },
+		],
+
+		maxZoom: 1,
+		minZoom: .2,
+		motionBlur: true,
+		wheelSensitivity: 0.05,
+		zoomingEnabled: true,
+		userZoomingEnabled: true,
+		panningEnabled: true,
+		userPanningEnabled: true,
+		layout: { name: 'preset' }
+	};
+
+
 }
-function removeNode(id) { var j = cy.$('#' + id); cy.remove(j); }
-function removeNodes(idlist) {
-	var collection = cy.elements('node[weight > 50]');
-	cy.remove(collection);
-
-	cy.remove('node[weight > 50]'); // remove nodes with weight greater than 50
-}
-function addNodes(o) {
-	var eles = cy.add([
-		{ group: 'nodes', data: { id: 'n0' }, position: { x: 100, y: 100 } },
-		{ group: 'nodes', data: { id: 'n1' }, position: { x: 200, y: 200 } },
-		{ group: 'edges', data: { id: 'e0', source: 'n0', target: 'n1' } }
-	]);
-}
-function getNode(id) {
-	return cy.getElementById(id);
-	return cy.$id(id);
-}
-function getNodes(func) {
-	let collection = cy.filter((ele, i, eles) => func(ele));
-	//console.log(collection);
-	return collection;
-}
-function getPosRelTo(elem, pos) {
-	let rect = getRect(elem);
-	pos.x -= rect.x;
-	pos.y -= rect.y;
-	return pos;
-}
-
-
-
-
-
-
-
-

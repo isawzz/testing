@@ -9,7 +9,10 @@
 	<body>
 		<script>
 			// Example POST method implementation:
-			var Url = 'http://localhost:8080/aroot/v97/index.php';
+			var Url = 'http://localhost:8080/aroot/v94/index.php';
+			Url = 'http://localhost:8080/aroot/v94/index.php?n1=5&n2=4';
+			let h = new Headers();
+			h.append('Accept', 'application/text');
 
 			async function postData(url = '', data = {}) {
 				// Default options are marked with *
@@ -18,10 +21,12 @@
 					mode: 'cors', // no-cors, *cors, same-origin
 					cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
 					//credentials: 'anonymouse', //'same-origin', // include, *same-origin, omit
-					headers: {
-						'Content-Type': 'application/json',
-						// 'Content-Type': 'application/x-www-form-urlencoded',
-					},
+					headers: h,
+
+					//headers: {
+					//	'Content-Type': 'application/json',
+					//	// 'Content-Type': 'application/x-www-form-urlencoded',
+					//},
 					redirect: 'follow', // manual, *follow, error
 					referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 					body: JSON.stringify(data), // body data type must match "Content-Type" header

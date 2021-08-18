@@ -34,10 +34,10 @@
 				h.append('Accept', 'application/text');
 
 				let req = new Request(uri, {
-					method: 'GET',
+					method: 'POST',
 					headers: h,
 					mode: 'cors',
-					//body: JSON.stringify({message: 'hallo', answer: 42}),
+					body: JSON.stringify({message: 'hallo', answer: 42}),
 				});
 
 				fetch(req)

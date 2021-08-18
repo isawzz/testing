@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<form id="login-form">
+			<input type="text" name="message" value="hallo es reicht" />
+			<input type="text" name="name" value="tom" />
+			<input type="text" name="age" value="12" />
+		</form>
+		<script>
+			async function doit() {
+				var formdata = new FormData(document.getElementById('login-form'));
+				formdata['n1'] = 13;
+				var url = 'http://localhost:8080/aroot/v94/index.php';
+				url = 'http://localhost:8080/aroot/v94/index.php'; //?n1=5&n2=4';
+				let h = new Headers();
+				h.append('Accept', 'application/text');
+				var resp = await fetch(url, {
+					method: 'POST',
+					mode: 'cors', // no-cors, *cors, same-origin
+					headers: h,
+					body: formdata,
+				});
+
+				console.log(await resp.text());
+			}
+			doit();
+		</script>
+	</body>
+</html>

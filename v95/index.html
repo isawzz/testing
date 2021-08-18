@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			var payload = {
+				a: 1,
+				b: 2,
+				message: 'hallo',
+			};
+
+			var Url = 'http://localhost:8080/aroot/v97/index.php';
+			fetch(Url, {
+				method: 'POST',
+				mode: 'cors', // no-cors, *cors, same-origin,
+				credentials: 'anonymous',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+				}, // this line is important, if this content-type is not set it wont work
+				body: 'foo=bar&blah=1',
+			});
+		</script>
+	</body>
+</html>

@@ -1,3 +1,44 @@
+
+
+function hallo() {
+	let o = {
+		container: document.getElementById('cy'),
+
+		elements: [],
+
+		style: [
+			//node styles
+			{
+				selector: 'node',
+				style: {
+					'background-color': 'red', //color of node
+					"color": "#fff", //color of text [black]
+					'label': 'data(id)',
+					"text-valign": "center", //sonst wird label ober node gemacht
+					"text-halign": "center",
+				}
+			},
+			{ selector: 'node.highlight', style: { 'background-color': 'yellow' } },
+			{ selector: 'node.semitransp', style: { 'opacity': '0.5' } },
+			//edge styles
+			{ selector: 'edge', style: { 'width': 2, 'line-color': 'blue', 'curve-style': 'bezier', } },
+		],
+
+		maxZoom: 1,
+		minZoom: .2,
+		motionBlur: true,
+		wheelSensitivity: 0.05,
+		zoomingEnabled: true,
+		userZoomingEnabled: true,
+		panningEnabled: true,
+		userPanningEnabled: true,
+		layout: { name: 'preset' }
+	};
+
+
+}
+
+
 function start_dep() {
 
 	cy = cytoscape({

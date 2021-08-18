@@ -37,6 +37,7 @@ function cyGraph(dParent, styleDict = {}, els = []) {
 	addKeys(defOptions, options);
 	cy = cytoscape(options);
 }
+
 function cyRemoveClickHandler() { cy.unbind('click'); }
 function cyClickEdgeNode(nodeHandler, edgeHandler) {
 	cy.unbind('click');
@@ -50,6 +51,8 @@ function cyClickNode(handler) {
 	cy.unbind('click');
 	cy.bind('click', 'node', ev => handler(ev.target.id()));
 }
+
+//#region pan zoom
 function cyPanOn() {
 	cy.panningEnabled(true);
 	cy.userPanningEnabled(true);
@@ -76,6 +79,8 @@ function cyZoomOff(reset = true) {
 	cy.userZoomingEnabled(false);
 }
 function cyZoomToggle(reset = true) { if (cy.zoomingEnabled()) cyZoomOff(); else cyZoomOn(); }
+//#endregion
+
 
 function addEdge(nid1, nid2) {
 }
@@ -238,44 +243,6 @@ function reklayout(){
 }
 
 //#region muell
-function hallo() {
-	let o = {
-		container: document.getElementById('cy'),
-
-		elements: [],
-
-		style: [
-			//node styles
-			{
-				selector: 'node',
-				style: {
-					'background-color': 'red', //color of node
-					"color": "#fff", //color of text [black]
-					'label': 'data(id)',
-					"text-valign": "center", //sonst wird label ober node gemacht
-					"text-halign": "center",
-				}
-			},
-			{ selector: 'node.highlight', style: { 'background-color': 'yellow' } },
-			{ selector: 'node.semitransp', style: { 'opacity': '0.5' } },
-			//edge styles
-			{ selector: 'edge', style: { 'width': 2, 'line-color': 'blue', 'curve-style': 'bezier', } },
-		],
-
-		maxZoom: 1,
-		minZoom: .2,
-		motionBlur: true,
-		wheelSensitivity: 0.05,
-		zoomingEnabled: true,
-		userZoomingEnabled: true,
-		panningEnabled: true,
-		userPanningEnabled: true,
-		layout: { name: 'preset' }
-	};
-
-
-}
-
 
 
 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Fetch with CORS</title>
+		<meta name="viewport" content="width=device-width" />
+		<!-- <link rel="stylesheet" href="./main.css" /> -->
+		<style>
+			p {
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Fetch with CORS</h1>
+		</header>
+		<main>
+			<p>Response will appear here after you click.</p>
+		</main>
+		<script>
+			let p;
+
+			document.addEventListener('DOMContentLoaded', function () {
+				p = document.querySelector('main>p');
+				p.addEventListener('click', doFetch);
+			});
+
+			function doFetch(ev) {
+				let uri = 'https://www.telecave.net/aroot/v93/index.php?n1=5&n2=4';
+				//let uri = 'http://localhost:8080/aroot/v93/index.php?n1=5&n2=4';
+
+				let h = new Headers();
+				h.append('Accept', 'application/text');
+
+				let req = new Request(uri, {
+					method: 'GET',
+					headers: h,
+					mode: 'cors',
+					//body: JSON.stringify({message: 'hallo', answer: 42}),
+				});
+
+				fetch(req)
+					.then((response) => {
+						if (response.ok) {
+							return response.text();
+						} else {
+							throw new Error('BAD HTTP stuff');
+						}
+					})
+					.then((data) => {
+						console.log(data);
+						p.textContent = JSON.stringify(data, null, 4);
+					})
+					.catch((err) => {
+						console.log('ERROR:', err.message);
+					});
+			}
+		</script>
+	</body>
+</html>

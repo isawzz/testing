@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script
+			src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<form id="form">
+			<input type="submit" name="submit" id="submit" />
+		</form>
+		<script>
+			$(document).ready(function () {
+				$('#submit').live('click', function () {
+					var url = 'localhost:8080/aroot/v99/index.php';
+					//var url = 'http://www.sitetwo.com/cors.php';
+					var data = $('#form').serialize();
+					jQuery
+						.ajax({
+							url: url,
+							type: 'POST',
+							data: $('#form').serialize(),
+						})
+						.done(function (response) {
+							alert(response);
+						})
+						.fail(function (error) {
+							console.log(error.statusText);
+						});
+					return false;
+				});
+			});
+		</script>
+	</body>
+</html>

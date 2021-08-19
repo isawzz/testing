@@ -15,9 +15,10 @@
 		<script>
 			async function doit() {
 				var formdata = new FormData(document.getElementById('login-form'));
-				formdata['n1'] = 13;
+				formdata.append('n1', 13);
 				var url = 'http://localhost:8080/aroot/v94/index.php';
 				url = 'http://localhost:8080/aroot/v94/index.php'; //?n1=5&n2=4';
+				url = 'https://www.telecave.net/aroot/v94/index.php'; //?n1=5&n2=4';
 				let h = new Headers();
 				h.append('Accept', 'application/text');
 				var resp = await fetch(url, {
